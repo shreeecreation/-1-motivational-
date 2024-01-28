@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 import 'package:motivational/src/app/app.dart';
 import 'package:motivational/src/core/routes/routes.dart';
@@ -58,20 +59,50 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.all(10.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Center(
-                              child: Text(
-                                data[index].content,
-                                textAlign: TextAlign.center,
-                                style: AppStyles.text14PxMedium,
+                            SizedBox(
+                              height: context.height / 3.5,
+                              child: Column(
+                                children: [
+                                  Center(
+                                    child: Text(
+                                      data[index].content,
+                                      textAlign: TextAlign.center,
+                                      style: AppStyles.text14PxMedium,
+                                    ),
+                                  ),
+                                  10.verticalSpace,
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [Text("- " + data[index].author), 20.horizontalSpace],
+                                  ),
+                                ],
                               ),
                             ),
-                            10.verticalSpace,
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [Text("- " + data[index].author), 20.horizontalSpace],
-                            )
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.ios_share,
+                                    size: 35,
+                                    color: AppColors.black,
+                                  ),
+                                ),
+                                12.horizontalSpace,
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.favorite_outline,
+                                    size: 35,
+                                    color: AppColors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 150)
                           ],
                         ),
                       );
@@ -86,18 +117,6 @@ class _HomePageState extends State<HomePage> {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: BottomWidget(),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Container(
-                  child: IconButton(
-                onPressed: () => Get.toNamed(AppRoutes.favoritePage),
-                color: AppColors.fabRedBackground,
-                icon: Icon(Icons.favorite),
-              )),
             ),
           ),
         ],
@@ -131,13 +150,11 @@ class BottomWidget extends StatelessWidget {
               Container(
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: AppColors.primary,
+                  color: AppColors.statusRed,
                 ),
                 child: IconButton(
                   onPressed: () {
-                    Get.toNamed(
-                      AppRoutes.paintPage,
-                    );
+                    Get.toNamed(AppRoutes.paintPage);
                   },
                   icon: const Icon(
                     Icons.format_paint_outlined,
@@ -149,7 +166,7 @@ class BottomWidget extends StatelessWidget {
               Container(
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: AppColors.primary,
+                  color: AppColors.statusRed,
                 ),
                 child: IconButton(
                   onPressed: () {},
