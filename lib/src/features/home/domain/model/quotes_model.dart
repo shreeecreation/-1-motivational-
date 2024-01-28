@@ -10,7 +10,6 @@ class QuotesModel with _$QuotesModel {
   const QuotesModel._();
 
   const factory QuotesModel({
-    required String id,
     required String content,
     required String author,
     required List<String> tags,

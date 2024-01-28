@@ -20,7 +20,6 @@ QuotesModel _$QuotesModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$QuotesModel {
-  String get id => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
@@ -37,7 +36,7 @@ abstract class $QuotesModelCopyWith<$Res> {
           QuotesModel value, $Res Function(QuotesModel) then) =
       _$QuotesModelCopyWithImpl<$Res, QuotesModel>;
   @useResult
-  $Res call({String id, String content, String author, List<String> tags});
+  $Res call({String content, String author, List<String> tags});
 }
 
 /// @nodoc
@@ -53,16 +52,11 @@ class _$QuotesModelCopyWithImpl<$Res, $Val extends QuotesModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? content = null,
     Object? author = null,
     Object? tags = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -87,7 +81,7 @@ abstract class _$$QuotesModelImplCopyWith<$Res>
       __$$QuotesModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String content, String author, List<String> tags});
+  $Res call({String content, String author, List<String> tags});
 }
 
 /// @nodoc
@@ -101,16 +95,11 @@ class __$$QuotesModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? content = null,
     Object? author = null,
     Object? tags = null,
   }) {
     return _then(_$QuotesModelImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -131,8 +120,7 @@ class __$$QuotesModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$QuotesModelImpl extends _QuotesModel {
   const _$QuotesModelImpl(
-      {required this.id,
-      required this.content,
+      {required this.content,
       required this.author,
       required final List<String> tags})
       : _tags = tags,
@@ -141,8 +129,6 @@ class _$QuotesModelImpl extends _QuotesModel {
   factory _$QuotesModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuotesModelImplFromJson(json);
 
-  @override
-  final String id;
   @override
   final String content;
   @override
@@ -157,7 +143,7 @@ class _$QuotesModelImpl extends _QuotesModel {
 
   @override
   String toString() {
-    return 'QuotesModel(id: $id, content: $content, author: $author, tags: $tags)';
+    return 'QuotesModel(content: $content, author: $author, tags: $tags)';
   }
 
   @override
@@ -165,7 +151,6 @@ class _$QuotesModelImpl extends _QuotesModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$QuotesModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.author, author) || other.author == author) &&
             const DeepCollectionEquality().equals(other._tags, _tags));
@@ -173,8 +158,8 @@ class _$QuotesModelImpl extends _QuotesModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, content, author,
-      const DeepCollectionEquality().hash(_tags));
+  int get hashCode => Object.hash(
+      runtimeType, content, author, const DeepCollectionEquality().hash(_tags));
 
   @JsonKey(ignore: true)
   @override
@@ -192,8 +177,7 @@ class _$QuotesModelImpl extends _QuotesModel {
 
 abstract class _QuotesModel extends QuotesModel {
   const factory _QuotesModel(
-      {required final String id,
-      required final String content,
+      {required final String content,
       required final String author,
       required final List<String> tags}) = _$QuotesModelImpl;
   const _QuotesModel._() : super._();
@@ -201,8 +185,6 @@ abstract class _QuotesModel extends QuotesModel {
   factory _QuotesModel.fromJson(Map<String, dynamic> json) =
       _$QuotesModelImpl.fromJson;
 
-  @override
-  String get id;
   @override
   String get content;
   @override
