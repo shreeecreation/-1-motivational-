@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:motivational/src/app/splash_page.dart';
-import 'package:motivational/src/features/home/presentation/home_page.dart';
+import 'package:motivational/src/core/routes/routes.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -9,7 +8,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: SplashPage(),
+      initialRoute: AppRoutes.splash,
+      getPages: AppRoutes.routes,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

@@ -8,6 +8,6 @@ class AppRoutes {
 
   static List<GetPage> routes = [
     GetPage(name: splash, page: () => SplashPage()),
-    GetPage(name: homePage, page: () => SplashPage()),
+    GetPage(name: homePage, page: () => HomePage()),
   ];
 }
