@@ -10,10 +10,10 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Get.toNamed(AppRoutes.homePage);
     });
 
-    return ScaffoldWrapper();
+    return const ScaffoldWrapper();
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/route_manager.dart';
+import 'package:motivational/src/core/routes/routes.dart';
 import 'package:motivational/src/core/theme/app_colors.dart';
 import 'package:motivational/src/core/theme/app_styles.dart';
 import 'package:motivational/src/core/widgets/custom_button.dart';
@@ -29,13 +31,6 @@ class _HomePageState extends State<HomePage> {
         children: [
           Container(
             color: AppColors.white,
-          ),
-          const Padding(
-            padding: EdgeInsets.only(bottom: 20.0, left: 20),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: BottomWidget(),
-            ),
           ),
           BlocBuilder<GetRandomQuotesCubit, GetRandomQuotesState>(
             builder: (context, state) {
@@ -72,7 +67,14 @@ class _HomePageState extends State<HomePage> {
                 },
               );
             },
-          )
+          ),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 20.0, left: 20),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: BottomWidget(),
+            ),
+          ),
         ],
       ),
     );
@@ -107,7 +109,9 @@ class BottomWidget extends StatelessWidget {
                   color: AppColors.primary,
                 ),
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.paintPage);
+                  },
                   icon: const Icon(
                     Icons.format_paint_outlined,
                     color: AppColors.white,
