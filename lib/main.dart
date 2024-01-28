@@ -1,29 +1,13 @@
-import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+import 'package:flutter/foundation.dart';
+import 'package:logging/logging.dart';
+import 'package:motivational/bootstrap.dart';
+import 'package:motivational/src/app/app.dart';
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'My Flutter App',
-      home: MyHomePage(),
-    );
+Future<void> main() async {
+  // final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  if (kDebugMode) {
+    Logger.root.level = Level.ALL;
   }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Page'),
-      ),
-      body: Center(
-        child: Text('Welcome to my Flutter app!'),
-      ),
-    );
-  }
+  await bootstrap(() => App());
 }
