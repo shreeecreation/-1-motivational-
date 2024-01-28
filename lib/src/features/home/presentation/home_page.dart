@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
+import 'package:motivational/src/app/app.dart';
 import 'package:motivational/src/core/routes/routes.dart';
 import 'package:motivational/src/core/theme/app_colors.dart';
 import 'package:motivational/src/core/theme/app_styles.dart';
@@ -85,6 +86,18 @@ class _HomePageState extends State<HomePage> {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: BottomWidget(),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Container(
+                  child: IconButton(
+                onPressed: () => Get.toNamed(AppRoutes.favoritePage),
+                color: AppColors.fabRedBackground,
+                icon: Icon(Icons.favorite),
+              )),
             ),
           ),
         ],
