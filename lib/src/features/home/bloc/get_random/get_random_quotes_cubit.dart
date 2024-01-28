@@ -11,7 +11,7 @@ class GetRandomQuotesCubit extends Cubit<GetRandomQuotesState> {
   GetRandomQuotesCubit() : super(GetRandomQuotesState.initial());
   final Dio _dio = Dio();
 
-  int _limit = 8;
+  int _limit = 3;
   void getRandomQuotes() async {
     try {
       final response = await _dio.get(ApiUrl.randomQuotes, queryParameters: {"limit": _limit});

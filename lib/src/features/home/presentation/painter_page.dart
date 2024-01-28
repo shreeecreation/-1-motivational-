@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:motivational/src/core/theme/app_styles.dart';
 import 'package:motivational/src/core/widgets/scaffold_wrapper.dart';
+import 'package:motivational/src/features/home/bloc/painter_saver/painter_saver_cubit.dart';
 
 import '../domain/constant/painter_constant.dart';
 
@@ -34,6 +36,7 @@ class PainterPage extends StatelessWidget {
                     return GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
+                        context.read<PainterSaverCubit>().saveColor(PainterConstatnt.painterConstant[index]);
                       },
                       child: Card(
                         elevation: 0.8,

@@ -21,8 +21,6 @@ class PainterSaverCubit extends Cubit<PainterSaverState> {
   }
 
   void saveColor(Color color) async {
-    emit(PainterSaverState.loading());
-
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setInt('selectedColor', color.value);
     print('Color saved: ${color.toString()}');

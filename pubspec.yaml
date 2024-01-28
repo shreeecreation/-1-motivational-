@@ -39,6 +39,7 @@ dependencies:
   logging: ^1.2.0
   flutter_screenutil: ^5.9.0
   shared_preferences: ^2.2.2
+  page_transition: ^2.1.0
 
 dev_dependencies:
   flutter_test: 

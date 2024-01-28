@@ -9,6 +9,8 @@ import 'package:motivational/src/core/theme/app_styles.dart';
 import 'package:motivational/src/core/widgets/custom_button.dart';
 import 'package:motivational/src/core/widgets/scaffold_wrapper.dart';
 import 'package:motivational/src/features/home/bloc/get_random/get_random_quotes_cubit.dart';
+import 'package:motivational/src/features/home/bloc/painter_saver/painter_saver_cubit.dart';
+import 'package:motivational/src/features/home/presentation/painter_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     context.read<GetRandomQuotesCubit>().getRandomQuotes();
+    context.read<PainterSaverCubit>().getPainter();
   }
 
   @override
@@ -29,8 +32,17 @@ class _HomePageState extends State<HomePage> {
     return ScaffoldWrapper(
       body: Stack(
         children: [
-          Container(
-            color: AppColors.white,
+          BlocBuilder<PainterSaverCubit, PainterSaverState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                  orElse: SizedBox.shrink,
+                  loading: () => const Center(child: CircularProgressIndicator()),
+                  success: (data) {
+                    return Container(
+                      color: data,
+                    );
+                  });
+            },
           ),
           BlocBuilder<GetRandomQuotesCubit, GetRandomQuotesState>(
             builder: (context, state) {
@@ -110,7 +122,9 @@ class BottomWidget extends StatelessWidget {
                 ),
                 child: IconButton(
                   onPressed: () {
-                    Get.toNamed(AppRoutes.paintPage);
+                    Get.toNamed(
+                      AppRoutes.paintPage,
+                    );
                   },
                   icon: const Icon(
                     Icons.format_paint_outlined,
