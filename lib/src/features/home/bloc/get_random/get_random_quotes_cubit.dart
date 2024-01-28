@@ -11,14 +11,30 @@ class GetRandomQuotesCubit extends Cubit<GetRandomQuotesState> {
   GetRandomQuotesCubit() : super(GetRandomQuotesState.initial());
   final Dio _dio = Dio();
 
-  int _limit = 3;
+  int _limit = 5;
+  late List<QuotesModel> _quotes = [];
   void getRandomQuotes() async {
+    emit(GetRandomQuotesState.loading());
+    try {
+      final response = await _dio.get(ApiUrl.randomQuotes, queryParameters: {"limit": _limit});
+      List<QuotesModel> quotes = (response.data as List<dynamic>).map((quoteData) => QuotesModel.fromJson(quoteData)).toList();
+      _quotes = quotes;
+      emit(GetRandomQuotesState.success(posts: quotes));
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void addMoreRandomQuotes() async {
     try {
       final response = await _dio.get(ApiUrl.randomQuotes, queryParameters: {"limit": _limit});
       List<QuotesModel> quotes = (response.data as List<dynamic>).map((quoteData) => QuotesModel.fromJson(quoteData)).toList();
 
-      print('Response data: ${quotes}');
-      emit(GetRandomQuotesState.success(posts: quotes));
+      if (state is _Success) {
+        final _state = state as _Success;
+        emit(_state.copyWith(posts: [..._quotes, ...quotes]));
+        _quotes = [..._quotes, ...quotes];
+      }
     } catch (e) {
       print(e);
     }

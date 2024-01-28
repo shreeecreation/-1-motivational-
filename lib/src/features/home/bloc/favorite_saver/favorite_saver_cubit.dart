@@ -9,7 +9,7 @@ part 'favorite_saver_state.dart';
 part 'favorite_saver_cubit.freezed.dart';
 
 class FavoriteSaverCubit extends Cubit<FavoriteSaverState> {
-  FavoriteSaverCubit() : super(FavoriteSaverState.initial());
+  FavoriteSaverCubit() : super(const FavoriteSaverState.initial());
   static const String quotesKey = 'quotes';
 
   void addToList(QuotesModel quote) async {
@@ -19,10 +19,12 @@ class FavoriteSaverCubit extends Cubit<FavoriteSaverState> {
       List<String>? existingQuotesJsonList = prefs.getStringList(quotesKey) ?? [];
 
       String quoteJson = jsonEncode(quote.toJson());
+      if (!existingQuotesJsonList.contains(quoteJson)) {
+        existingQuotesJsonList.add(quoteJson);
+        await prefs.setStringList(quotesKey, existingQuotesJsonList);
+      }
 
-      existingQuotesJsonList.add(quoteJson);
-
-      await prefs.setStringList(quotesKey, existingQuotesJsonList);
+      print("done");
     } catch (e) {
       print(e.toString());
     }
@@ -52,7 +54,7 @@ class FavoriteSaverCubit extends Cubit<FavoriteSaverState> {
   }
 
   void getList() async {
-    emit(FavoriteSaverState.loading());
+    emit(const FavoriteSaverState.loading());
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     try {

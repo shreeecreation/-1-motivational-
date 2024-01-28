@@ -34,7 +34,7 @@ class AppTheme {
       space: 0,
     ),
     tabBarTheme: TabBarTheme(
-      indicator: BoxDecoration(
+      indicator: const BoxDecoration(
         color: AppColors.white,
       ),
       labelPadding: EdgeInsets.symmetric(horizontal: 20.w),

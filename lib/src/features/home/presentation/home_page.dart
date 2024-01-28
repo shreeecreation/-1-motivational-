@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
-import 'package:motivational/src/app/app.dart';
 import 'package:motivational/src/core/routes/routes.dart';
 import 'package:motivational/src/core/theme/app_colors.dart';
 import 'package:motivational/src/core/theme/app_styles.dart';
+import 'package:motivational/src/core/widgets/context.extension.dart';
 import 'package:motivational/src/core/widgets/custom_button.dart';
 import 'package:motivational/src/core/widgets/scaffold_wrapper.dart';
+import 'package:motivational/src/features/home/bloc/favorite_saver/favorite_saver_cubit.dart';
 import 'package:motivational/src/features/home/bloc/get_random/get_random_quotes_cubit.dart';
 import 'package:motivational/src/features/home/bloc/painter_saver/painter_saver_cubit.dart';
-import 'package:motivational/src/features/home/presentation/painter_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,6 +27,8 @@ class _HomePageState extends State<HomePage> {
     context.read<GetRandomQuotesCubit>().getRandomQuotes();
     context.read<PainterSaverCubit>().getPainter();
   }
+
+  int page = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +53,12 @@ class _HomePageState extends State<HomePage> {
                 orElse: () => const SizedBox.shrink(),
                 success: (data, _, hasMoreItems) {
                   return PageView.builder(
+                    onPageChanged: (value) {
+                      page = value;
+                      if (page == data.length - 2) {
+                        context.read<GetRandomQuotesCubit>().addMoreRandomQuotes();
+                      }
+                    },
                     scrollDirection: Axis.vertical,
                     itemCount: data.length,
                     itemBuilder: (context, index) {
@@ -93,7 +100,10 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 12.horizontalSpace,
                                 IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    context.read<FavoriteSaverCubit>().addToList(data[index]);
+                                    context.showSnackbar(title: "Success !", message: "Added to Favorites");
+                                  },
                                   icon: const Icon(
                                     Icons.favorite_outline,
                                     size: 35,
@@ -102,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 150)
+                            const SizedBox(height: 150)
                           ],
                         ),
                       );
@@ -132,55 +142,53 @@ class BottomWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            decoration: const BoxDecoration(color: AppColors.white, borderRadius: BorderRadius.all(Radius.circular(10))),
-            child: CustomButton.iconText(
-                label: 'Sound On   ',
-                labelStyle: AppStyles.text11Px,
-                textColor: AppColors.black,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          decoration: const BoxDecoration(color: AppColors.white, borderRadius: BorderRadius.all(Radius.circular(10))),
+          child: CustomButton.iconText(
+              label: 'Sound On   ',
+              labelStyle: AppStyles.text11Px,
+              textColor: AppColors.black,
+              onPressed: () {},
+              icon: const Icon(CupertinoIcons.speaker_1_fill)),
+        ),
+        Row(
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                color: AppColors.statusRed,
+              ),
+              child: IconButton(
+                onPressed: () {
+                  Get.toNamed(AppRoutes.paintPage);
+                },
+                icon: const Icon(
+                  Icons.format_paint_outlined,
+                  color: AppColors.white,
+                ),
+              ),
+            ),
+            15.horizontalSpace,
+            Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                color: AppColors.statusRed,
+              ),
+              child: IconButton(
                 onPressed: () {},
-                icon: const Icon(CupertinoIcons.speaker_1_fill)),
-          ),
-          Row(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: AppColors.statusRed,
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    Get.toNamed(AppRoutes.paintPage);
-                  },
-                  icon: const Icon(
-                    Icons.format_paint_outlined,
-                    color: AppColors.white,
-                  ),
+                icon: const Icon(
+                  Icons.favorite,
+                  color: AppColors.white,
                 ),
               ),
-              15.horizontalSpace,
-              Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: AppColors.statusRed,
-                ),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.favorite,
-                    color: AppColors.white,
-                  ),
-                ),
-              ),
-              15.horizontalSpace,
-            ],
-          ),
-        ],
-      ),
+            ),
+            15.horizontalSpace,
+          ],
+        ),
+      ],
     );
   }
 }

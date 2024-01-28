@@ -6,7 +6,7 @@ import 'package:motivational/src/features/home/presentation/painter_page.dart';
 
 class AppRoutes {
   static Transition transitionType = Transition.rightToLeft;
-  static Duration transitionDuration = Duration(milliseconds: 300);
+  static Duration transitionDuration = const Duration(milliseconds: 300);
   static const String splash = '/';
   static const String homePage = '/home';
   static const String paintPage = '/paintPage';

@@ -9,5 +9,5 @@ Future<void> main() async {
   if (kDebugMode) {
     Logger.root.level = Level.ALL;
   }
-  await bootstrap(() => App());
+  await bootstrap(() => const App());
 }

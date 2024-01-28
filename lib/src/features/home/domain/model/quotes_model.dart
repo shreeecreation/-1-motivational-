@@ -1,6 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
-
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'quotes_model.freezed.dart';
 part 'quotes_model.g.dart';
