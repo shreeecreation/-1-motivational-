@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'get_random_quotes_cubit.dart';
+part of 'share_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,34 +15,28 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$GetRandomQuotesState {
+mixin _$ShareState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(
-            List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)
-        success,
+    required TResult Function() inProgress,
+    required TResult Function(String image) success,
     required TResult Function(String? error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(
-            List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
-        success,
+    TResult? Function()? inProgress,
+    TResult? Function(String image)? success,
     TResult? Function(String? error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(
-            List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
-        success,
+    TResult Function()? inProgress,
+    TResult Function(String image)? success,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) =>
@@ -50,7 +44,7 @@ mixin _$GetRandomQuotesState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loading value) inProgress,
     required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
   }) =>
@@ -58,7 +52,7 @@ mixin _$GetRandomQuotesState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loading value)? inProgress,
     TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
   }) =>
@@ -66,7 +60,7 @@ mixin _$GetRandomQuotesState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
+    TResult Function(_Loading value)? inProgress,
     TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -75,17 +69,16 @@ mixin _$GetRandomQuotesState {
 }
 
 /// @nodoc
-abstract class $GetRandomQuotesStateCopyWith<$Res> {
-  factory $GetRandomQuotesStateCopyWith(GetRandomQuotesState value,
-          $Res Function(GetRandomQuotesState) then) =
-      _$GetRandomQuotesStateCopyWithImpl<$Res, GetRandomQuotesState>;
+abstract class $ShareStateCopyWith<$Res> {
+  factory $ShareStateCopyWith(
+          ShareState value, $Res Function(ShareState) then) =
+      _$ShareStateCopyWithImpl<$Res, ShareState>;
 }
 
 /// @nodoc
-class _$GetRandomQuotesStateCopyWithImpl<$Res,
-        $Val extends GetRandomQuotesState>
-    implements $GetRandomQuotesStateCopyWith<$Res> {
-  _$GetRandomQuotesStateCopyWithImpl(this._value, this._then);
+class _$ShareStateCopyWithImpl<$Res, $Val extends ShareState>
+    implements $ShareStateCopyWith<$Res> {
+  _$ShareStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -102,7 +95,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$GetRandomQuotesStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$ShareStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -116,7 +109,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'GetRandomQuotesState.initial()';
+    return 'ShareState.initial()';
   }
 
   @override
@@ -132,10 +125,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(
-            List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)
-        success,
+    required TResult Function() inProgress,
+    required TResult Function(String image) success,
     required TResult Function(String? error) error,
   }) {
     return initial();
@@ -145,10 +136,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(
-            List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
-        success,
+    TResult? Function()? inProgress,
+    TResult? Function(String image)? success,
     TResult? Function(String? error)? error,
   }) {
     return initial?.call();
@@ -158,10 +147,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(
-            List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
-        success,
+    TResult Function()? inProgress,
+    TResult Function(String image)? success,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {
@@ -175,7 +162,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loading value) inProgress,
     required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
   }) {
@@ -186,7 +173,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loading value)? inProgress,
     TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
   }) {
@@ -197,7 +184,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
+    TResult Function(_Loading value)? inProgress,
     TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -209,7 +196,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements GetRandomQuotesState {
+abstract class _Initial implements ShareState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -222,7 +209,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$GetRandomQuotesStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$ShareStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -236,7 +223,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'GetRandomQuotesState.loading()';
+    return 'ShareState.inProgress()';
   }
 
   @override
@@ -252,41 +239,35 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(
-            List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)
-        success,
+    required TResult Function() inProgress,
+    required TResult Function(String image) success,
     required TResult Function(String? error) error,
   }) {
-    return loading();
+    return inProgress();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(
-            List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
-        success,
+    TResult? Function()? inProgress,
+    TResult? Function(String image)? success,
     TResult? Function(String? error)? error,
   }) {
-    return loading?.call();
+    return inProgress?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(
-            List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
-        success,
+    TResult Function()? inProgress,
+    TResult Function(String image)? success,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading();
+    if (inProgress != null) {
+      return inProgress();
     }
     return orElse();
   }
@@ -295,41 +276,41 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loading value) inProgress,
     required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
   }) {
-    return loading(this);
+    return inProgress(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loading value)? inProgress,
     TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
   }) {
-    return loading?.call(this);
+    return inProgress?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
+    TResult Function(_Loading value)? inProgress,
     TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading(this);
+    if (inProgress != null) {
+      return inProgress(this);
     }
     return orElse();
   }
 }
 
-abstract class _Loading implements GetRandomQuotesState {
+abstract class _Loading implements ShareState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -339,12 +320,12 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems});
+  $Res call({String image});
 }
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$GetRandomQuotesStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$ShareStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
@@ -353,23 +334,13 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? posts = null,
-    Object? isLoadingMore = null,
-    Object? hasMoreItems = null,
+    Object? image = null,
   }) {
     return _then(_$SuccessImpl(
-      posts: null == posts
-          ? _value._posts
-          : posts // ignore: cast_nullable_to_non_nullable
-              as List<QuotesModel>,
-      isLoadingMore: null == isLoadingMore
-          ? _value.isLoadingMore
-          : isLoadingMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasMoreItems: null == hasMoreItems
-          ? _value.hasMoreItems
-          : hasMoreItems // ignore: cast_nullable_to_non_nullable
-              as bool,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -377,31 +348,14 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(
-      {final List<QuotesModel> posts = const [],
-      this.isLoadingMore = false,
-      this.hasMoreItems = false})
-      : _posts = posts;
-
-  final List<QuotesModel> _posts;
-  @override
-  @JsonKey()
-  List<QuotesModel> get posts {
-    if (_posts is EqualUnmodifiableListView) return _posts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_posts);
-  }
+  const _$SuccessImpl({required this.image});
 
   @override
-  @JsonKey()
-  final bool isLoadingMore;
-  @override
-  @JsonKey()
-  final bool hasMoreItems;
+  final String image;
 
   @override
   String toString() {
-    return 'GetRandomQuotesState.success(posts: $posts, isLoadingMore: $isLoadingMore, hasMoreItems: $hasMoreItems)';
+    return 'ShareState.success(image: $image)';
   }
 
   @override
@@ -409,16 +363,11 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            const DeepCollectionEquality().equals(other._posts, _posts) &&
-            (identical(other.isLoadingMore, isLoadingMore) ||
-                other.isLoadingMore == isLoadingMore) &&
-            (identical(other.hasMoreItems, hasMoreItems) ||
-                other.hasMoreItems == hasMoreItems));
+            (identical(other.image, image) || other.image == image));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_posts), isLoadingMore, hasMoreItems);
+  int get hashCode => Object.hash(runtimeType, image);
 
   @JsonKey(ignore: true)
   @override
@@ -430,41 +379,35 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(
-            List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)
-        success,
+    required TResult Function() inProgress,
+    required TResult Function(String image) success,
     required TResult Function(String? error) error,
   }) {
-    return success(posts, isLoadingMore, hasMoreItems);
+    return success(image);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(
-            List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
-        success,
+    TResult? Function()? inProgress,
+    TResult? Function(String image)? success,
     TResult? Function(String? error)? error,
   }) {
-    return success?.call(posts, isLoadingMore, hasMoreItems);
+    return success?.call(image);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(
-            List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
-        success,
+    TResult Function()? inProgress,
+    TResult Function(String image)? success,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(posts, isLoadingMore, hasMoreItems);
+      return success(image);
     }
     return orElse();
   }
@@ -473,7 +416,7 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loading value) inProgress,
     required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
   }) {
@@ -484,7 +427,7 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loading value)? inProgress,
     TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
   }) {
@@ -495,7 +438,7 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
+    TResult Function(_Loading value)? inProgress,
     TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -507,15 +450,10 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements GetRandomQuotesState {
-  const factory _Success(
-      {final List<QuotesModel> posts,
-      final bool isLoadingMore,
-      final bool hasMoreItems}) = _$SuccessImpl;
+abstract class _Success implements ShareState {
+  const factory _Success({required final String image}) = _$SuccessImpl;
 
-  List<QuotesModel> get posts;
-  bool get isLoadingMore;
-  bool get hasMoreItems;
+  String get image;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -532,7 +470,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$GetRandomQuotesStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$ShareStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -562,7 +500,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'GetRandomQuotesState.error(error: $error)';
+    return 'ShareState.error(error: $error)';
   }
 
   @override
@@ -586,10 +524,8 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(
-            List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)
-        success,
+    required TResult Function() inProgress,
+    required TResult Function(String image) success,
     required TResult Function(String? error) error,
   }) {
     return error(this.error);
@@ -599,10 +535,8 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(
-            List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
-        success,
+    TResult? Function()? inProgress,
+    TResult? Function(String image)? success,
     TResult? Function(String? error)? error,
   }) {
     return error?.call(this.error);
@@ -612,10 +546,8 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(
-            List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
-        success,
+    TResult Function()? inProgress,
+    TResult Function(String image)? success,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {
@@ -629,7 +561,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loading value) inProgress,
     required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
   }) {
@@ -640,7 +572,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loading value)? inProgress,
     TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
   }) {
@@ -651,7 +583,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
+    TResult Function(_Loading value)? inProgress,
     TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -663,7 +595,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements GetRandomQuotesState {
+abstract class _Error implements ShareState {
   const factory _Error({final String? error}) = _$ErrorImpl;
 
   String? get error;

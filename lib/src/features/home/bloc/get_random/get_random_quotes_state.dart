@@ -9,6 +9,5 @@ class GetRandomQuotesState with _$GetRandomQuotesState {
     @Default(false) bool isLoadingMore,
     @Default(false) bool hasMoreItems,
   }) = _Success;
-  const factory GetRandomQuotesState.error() = _Error;
-  
+  const factory GetRandomQuotesState.error({String? error}) = _Error;
 }

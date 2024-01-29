@@ -5,25 +5,41 @@ import 'package:get/route_manager.dart';
 import 'package:motivational/src/core/routes/routes.dart';
 import 'package:motivational/src/features/home/bloc/favorite_saver/favorite_saver_cubit.dart';
 import 'package:motivational/src/features/home/bloc/get_random/get_random_quotes_cubit.dart';
+import 'package:motivational/src/features/home/bloc/image/image_cubit.dart';
 import 'package:motivational/src/features/home/bloc/painter_saver/painter_saver_cubit.dart';
+import 'package:motivational/src/features/home/presentation/widgets/quote_viewer.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      child: GetMaterialApp(
-        initialRoute: AppRoutes.splash,
-        getPages: AppRoutes.routes,
-        debugShowCheckedModeBanner: false,
-        builder: (context, child) {
-          return MultiBlocProvider(providers: [
-            BlocProvider(create: (context) => PainterSaverCubit()),
-            BlocProvider(create: (context) => FavoriteSaverCubit()),
-            BlocProvider(create: (context) => GetRandomQuotesCubit())
-          ], child: child!);
-        },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => PainterSaverCubit()),
+        BlocProvider(create: (context) => FavoriteSaverCubit()),
+        BlocProvider(create: (context) => GetRandomQuotesCubit()),
+        BlocProvider(create: (context) => ImageCubit()..getImages()),
+      ],
+      child: ScreenUtilInit(
+        child: Builder(builder: (context) {
+          final color = context.watch<PainterSaverCubit>().state.color;
+          return GetMaterialApp(
+            initialRoute: AppRoutes.splash,
+            getPages: AppRoutes.routes,
+            theme: ThemeData(
+              colorScheme: color != null
+                  ? isColorDark(color)
+                      ? const ColorScheme.dark()
+                      : const ColorScheme.light()
+                  : const ColorScheme.light(),
+            ),
+            debugShowCheckedModeBanner: false,
+            builder: (context, child) {
+              return child!;
+            },
+          );
+        }),
       ),
     );
   }

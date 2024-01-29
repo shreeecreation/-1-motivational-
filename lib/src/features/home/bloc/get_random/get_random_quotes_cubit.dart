@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:motivational/src/core/api/api_url.dart';
+import 'package:motivational/src/core/clients/pocket_base_client.dart';
 import 'package:motivational/src/features/home/domain/model/quotes_model.dart';
 import 'package:dio/dio.dart';
 
@@ -9,26 +10,54 @@ part 'get_random_quotes_cubit.freezed.dart';
 
 class GetRandomQuotesCubit extends Cubit<GetRandomQuotesState> {
   GetRandomQuotesCubit() : super(GetRandomQuotesState.initial());
-  final Dio _dio = Dio();
+  final pb = PocketBaseClient();
 
-  int _limit = 5;
+  final int _limit = 5;
+  final int _page = 1;
+  int totalItem = 0;
+
   late List<QuotesModel> _quotes = [];
+
   void getRandomQuotes() async {
-    emit(GetRandomQuotesState.loading());
+    emit(const GetRandomQuotesState.loading());
     try {
-      final response = await _dio.get(ApiUrl.randomQuotes, queryParameters: {"limit": _limit});
-      List<QuotesModel> quotes = (response.data as List<dynamic>).map((quoteData) => QuotesModel.fromJson(quoteData)).toList();
+      final response = await pb.client.collection('quotes').getList(
+        page: 1,
+        perPage: _limit,
+        sort: '-created',
+        query: {
+          // "tags": {"\$in": ["motivational", "inspirational", "success"]},
+          // 'is_published': true,
+        },
+      );
+      totalItem = response.totalItems;
+      List<QuotesModel> quotes = response.items
+          .map((quoteData) => QuotesModel.fromJson(quoteData.data))
+          .toList();
       _quotes = quotes;
       emit(GetRandomQuotesState.success(posts: quotes));
     } catch (e) {
-      print(e);
+      emit(const GetRandomQuotesState.error());
     }
   }
 
   void addMoreRandomQuotes() async {
     try {
-      final response = await _dio.get(ApiUrl.randomQuotes, queryParameters: {"limit": _limit});
-      List<QuotesModel> quotes = (response.data as List<dynamic>).map((quoteData) => QuotesModel.fromJson(quoteData)).toList();
+      if (_quotes.length >= totalItem) {
+        return;
+      }
+      final response = await pb.client.collection('quotes').getList(
+        page: _page + 1,
+        perPage: _limit,
+        sort: '-created',
+        query: {
+          // "tags": {"\$in": ["motivational", "inspirational", "success"]},
+          // 'is_published': true,
+        },
+      );
+      List<QuotesModel> quotes = (response.items)
+          .map((quoteData) => QuotesModel.fromJson(quoteData.data))
+          .toList();
 
       if (state is _Success) {
         final _state = state as _Success;

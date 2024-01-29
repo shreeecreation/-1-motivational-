@@ -6,7 +6,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.2.4 <4.0.0'
+  sdk: ">=3.0.0 <4.0.0"
 
 
 dependencies:
@@ -31,6 +31,14 @@ dependencies:
 
   #dependency injection
   injectable: ^2.1.0
+  # client
+  pocketbase: ^0.18.0
+  
+
+  # TODO: (shree) make it custom or find any other good package 
+  social_login_buttons: ^1.0.7
+
+  share_plus: ^7.2.1
 
 
   dio: ^5.4.0
@@ -40,6 +48,15 @@ dependencies:
   flutter_screenutil: ^5.9.0
   shared_preferences: ^2.2.2
   page_transition: ^2.1.0
+  screenshot: ^2.1.0
+  path_provider: ^2.1.2
+  flutter_svg: ^2.0.9
+  flutter_cache_manager: ^3.3.1
+  image_picker: ^1.0.7
+
+
+dependency_overrides:
+  share_plus: ^6.3.4
 
 dev_dependencies:
   flutter_test: 
@@ -55,10 +72,13 @@ dev_dependencies:
   hive_generator: ^2.0.0
   flutter_gen_runner: ^5.3.1
 
+  
+
 flutter:
 
   uses-material-design: true
   assets:
+    - assets/svg/
     - assets/images/
 
 flutter_gen:

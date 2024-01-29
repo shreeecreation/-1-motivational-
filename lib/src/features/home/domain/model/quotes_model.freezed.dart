@@ -122,7 +122,7 @@ class _$QuotesModelImpl extends _QuotesModel {
   const _$QuotesModelImpl(
       {required this.content,
       required this.author,
-      required final List<String> tags})
+      final List<String> tags = const []})
       : _tags = tags,
         super._();
 
@@ -135,6 +135,7 @@ class _$QuotesModelImpl extends _QuotesModel {
   final String author;
   final List<String> _tags;
   @override
+  @JsonKey()
   List<String> get tags {
     if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
@@ -179,7 +180,7 @@ abstract class _QuotesModel extends QuotesModel {
   const factory _QuotesModel(
       {required final String content,
       required final String author,
-      required final List<String> tags}) = _$QuotesModelImpl;
+      final List<String> tags}) = _$QuotesModelImpl;
   const _QuotesModel._() : super._();
 
   factory _QuotesModel.fromJson(Map<String, dynamic> json) =

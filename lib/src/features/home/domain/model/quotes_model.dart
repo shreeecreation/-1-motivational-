@@ -9,8 +9,9 @@ class QuotesModel with _$QuotesModel {
   const factory QuotesModel({
     required String content,
     required String author,
-    required List<String> tags,
+    @Default([]) List<String> tags,
   }) = _QuotesModel;
 
-  factory QuotesModel.fromJson(Map<String, dynamic> json) => _$QuotesModelFromJson(json);
+  factory QuotesModel.fromJson(Map<String, dynamic> json) =>
+      _$QuotesModelFromJson(json);
 }

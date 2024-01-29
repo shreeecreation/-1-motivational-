@@ -1,34 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:logging/logging.dart';
+import 'package:motivational/src/core/cache/manager.dart';
+import 'package:motivational/src/features/home/domain/constant/painter_constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 part 'painter_saver_state.dart';
 part 'painter_saver_cubit.freezed.dart';
 
 class PainterSaverCubit extends Cubit<PainterSaverState> {
-  PainterSaverCubit() : super(PainterSaverState.initial());
+  PainterSaverCubit()
+      : super(PainterSaverState.mode(
+          color: PainterConstatnt.painterConstant.first,
+        ));
 
-  void getPainter() async {
-    Color selectedColor = Colors.white;
-    emit(PainterSaverState.loading());
+  final Logger logger = Logger('PainterSaverCubit');
+
+  Future<void> getPainter() async {
+    Color defaultColor = PainterConstatnt.painterConstant.first;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int? colorValue = prefs.getInt('selectedColor');
-    if (colorValue != null) {
-      selectedColor = Color(colorValue);
-    }
 
-    emit(PainterSaverState.success(color: selectedColor));
+    final selectedColor = prefs.getInt('selectedColor');
+    final selectedImage = prefs.getString('selectedImage');
+
+    if (selectedColor != null) {
+      emit(
+        PainterSaverState.mode(
+          color: Color(selectedColor),
+          image: selectedImage,
+        ),
+      );
+    } else {
+      emit(PainterSaverState.mode(color: defaultColor, image: selectedImage));
+    }
   }
 
   void saveColor(Color color) async {
+    final _state = state as _Mode;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setInt('selectedColor', color.value);
-    print('Color saved: ${color.toString()}');
+    logger.info('Color saved: ${color.toString()}');
 
-    if (state is _Success) {
-      final _state = state as _Success;
+    emit(PainterSaverState.mode(color: color, image: _state.image));
+  }
 
-      emit(_state.copyWith(color: color));
-    }
+  Future<void> selectImage(String image) async {
+    final _state = state as _Mode;
+    final _localImage = await AppCacheManager.manager.getSingleFile(image);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('selectedImage', _localImage.path);
+    emit(PainterSaverState.mode(image: _localImage.path, color: _state.color));
+  }
+
+  Future<void> setLocalImage(String image) async {
+    final _state = state as _Mode;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('selectedImage', image);
+    emit(PainterSaverState.mode(image: image, color: _state.color));
   }
 }

@@ -10,7 +10,9 @@ _$QuotesModelImpl _$$QuotesModelImplFromJson(Map<String, dynamic> json) =>
     _$QuotesModelImpl(
       content: json['content'] as String,
       author: json['author'] as String,
-      tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
+      tags:
+          (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              const [],
     );
 
 Map<String, dynamic> _$$QuotesModelImplToJson(_$QuotesModelImpl instance) =>

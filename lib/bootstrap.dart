@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logging/logging.dart';
+import 'package:motivational/src/core/clients/pocket_base_client.dart';
 import 'package:motivational/src/core/logigng.dart';
 
 class AppBlocObserver extends BlocObserver {
@@ -19,6 +22,13 @@ class AppBlocObserver extends BlocObserver {
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
+  await PocketBaseClient().initialize();
+
+  Logger.root.onRecord.listen((record) {
+    if (kDebugMode) {
+      print('${record.level.name}: ${record.time}: ${record.message}');
+    }
+  });
 
   await _initDependencies();
   Bloc.observer = AppBlocObserver();
