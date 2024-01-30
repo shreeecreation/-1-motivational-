@@ -25,6 +25,7 @@ class ShareCubit extends Cubit<ShareState> {
         emit(const ShareState.error());
       }
     } catch (e) {
+      print(e);
       emit(const ShareState.error());
     }
   }

@@ -6,4 +6,5 @@ class PainterSaverState with _$PainterSaverState {
   const factory PainterSaverState.mode({Color? color, String? image}) = _Mode;
 
   bool get isImage => this is _Mode && (this as _Mode).image != null;
+  bool get isTransparent => this is _Mode && (this as _Mode).color == PainterConstatnt.painterConstant.first;
 }

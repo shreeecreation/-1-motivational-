@@ -2,10 +2,11 @@ import 'package:flutter/cupertino.dart';
 
 class PainterConstatnt {
   static List<Color> painterConstant = [
+    const Color(0xFF00FFFFFF),
+    const Color(0xFF0d1b2a),
     const Color(0xFFffc8dd),
     const Color(0xFFfefae0),
     const Color(0xFFe0e1dd),
-    const Color(0xFF0d1b2a),
     const Color(0xFFfdf0d5),
     const Color(0xFFffcdb2),
     const Color(0xFFa8dadc),
