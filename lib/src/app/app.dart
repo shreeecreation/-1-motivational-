@@ -21,7 +21,7 @@ class App extends StatelessWidget {
         BlocProvider(create: (context) => FavoriteSaverCubit()),
         BlocProvider(create: (context) => GetRandomQuotesCubit()),
         BlocProvider(create: (context) => ImageCubit()..getImages()),
-        BlocProvider(create: (context) => SoundBloc()..add(SoundEvent.playSound())),
+        BlocProvider(create: (context) => SoundBloc()..add(const SoundEvent.toggleSound())),
       ],
       child: ScreenUtilInit(
         child: Builder(builder: (context) {

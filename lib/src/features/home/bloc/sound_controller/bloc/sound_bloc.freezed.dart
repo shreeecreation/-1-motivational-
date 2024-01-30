@@ -19,24 +19,21 @@ mixin _$SoundEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() playSound,
-    required TResult Function(bool toggle) toggleSound,
+    required TResult Function() toggleSound,
     required TResult Function(String audioPath) changeSound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? playSound,
-    TResult? Function(bool toggle)? toggleSound,
+    TResult? Function()? toggleSound,
     TResult? Function(String audioPath)? changeSound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? playSound,
-    TResult Function(bool toggle)? toggleSound,
+    TResult Function()? toggleSound,
     TResult Function(String audioPath)? changeSound,
     required TResult orElse(),
   }) =>
@@ -44,7 +41,6 @@ mixin _$SoundEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_PlaySound value) playSound,
     required TResult Function(_ToggleSound value) toggleSound,
     required TResult Function(_ChangeSound value) changeSound,
   }) =>
@@ -52,7 +48,6 @@ mixin _$SoundEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_PlaySound value)? playSound,
     TResult? Function(_ToggleSound value)? toggleSound,
     TResult? Function(_ChangeSound value)? changeSound,
   }) =>
@@ -60,7 +55,6 @@ mixin _$SoundEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_PlaySound value)? playSound,
     TResult Function(_ToggleSound value)? toggleSound,
     TResult Function(_ChangeSound value)? changeSound,
     required TResult orElse(),
@@ -125,8 +119,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() playSound,
-    required TResult Function(bool toggle) toggleSound,
+    required TResult Function() toggleSound,
     required TResult Function(String audioPath) changeSound,
   }) {
     return started();
@@ -136,8 +129,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? playSound,
-    TResult? Function(bool toggle)? toggleSound,
+    TResult? Function()? toggleSound,
     TResult? Function(String audioPath)? changeSound,
   }) {
     return started?.call();
@@ -147,8 +139,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? playSound,
-    TResult Function(bool toggle)? toggleSound,
+    TResult Function()? toggleSound,
     TResult Function(String audioPath)? changeSound,
     required TResult orElse(),
   }) {
@@ -162,7 +153,6 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_PlaySound value) playSound,
     required TResult Function(_ToggleSound value) toggleSound,
     required TResult Function(_ChangeSound value) changeSound,
   }) {
@@ -173,7 +163,6 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_PlaySound value)? playSound,
     TResult? Function(_ToggleSound value)? toggleSound,
     TResult? Function(_ChangeSound value)? changeSound,
   }) {
@@ -184,7 +173,6 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_PlaySound value)? playSound,
     TResult Function(_ToggleSound value)? toggleSound,
     TResult Function(_ChangeSound value)? changeSound,
     required TResult orElse(),
@@ -201,126 +189,10 @@ abstract class _Started implements SoundEvent {
 }
 
 /// @nodoc
-abstract class _$$PlaySoundImplCopyWith<$Res> {
-  factory _$$PlaySoundImplCopyWith(
-          _$PlaySoundImpl value, $Res Function(_$PlaySoundImpl) then) =
-      __$$PlaySoundImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$PlaySoundImplCopyWithImpl<$Res>
-    extends _$SoundEventCopyWithImpl<$Res, _$PlaySoundImpl>
-    implements _$$PlaySoundImplCopyWith<$Res> {
-  __$$PlaySoundImplCopyWithImpl(
-      _$PlaySoundImpl _value, $Res Function(_$PlaySoundImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$PlaySoundImpl implements _PlaySound {
-  const _$PlaySoundImpl();
-
-  @override
-  String toString() {
-    return 'SoundEvent.playSound()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$PlaySoundImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function() playSound,
-    required TResult Function(bool toggle) toggleSound,
-    required TResult Function(String audioPath) changeSound,
-  }) {
-    return playSound();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function()? playSound,
-    TResult? Function(bool toggle)? toggleSound,
-    TResult? Function(String audioPath)? changeSound,
-  }) {
-    return playSound?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? playSound,
-    TResult Function(bool toggle)? toggleSound,
-    TResult Function(String audioPath)? changeSound,
-    required TResult orElse(),
-  }) {
-    if (playSound != null) {
-      return playSound();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_PlaySound value) playSound,
-    required TResult Function(_ToggleSound value) toggleSound,
-    required TResult Function(_ChangeSound value) changeSound,
-  }) {
-    return playSound(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_PlaySound value)? playSound,
-    TResult? Function(_ToggleSound value)? toggleSound,
-    TResult? Function(_ChangeSound value)? changeSound,
-  }) {
-    return playSound?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_PlaySound value)? playSound,
-    TResult Function(_ToggleSound value)? toggleSound,
-    TResult Function(_ChangeSound value)? changeSound,
-    required TResult orElse(),
-  }) {
-    if (playSound != null) {
-      return playSound(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _PlaySound implements SoundEvent {
-  const factory _PlaySound() = _$PlaySoundImpl;
-}
-
-/// @nodoc
 abstract class _$$ToggleSoundImplCopyWith<$Res> {
   factory _$$ToggleSoundImplCopyWith(
           _$ToggleSoundImpl value, $Res Function(_$ToggleSoundImpl) then) =
       __$$ToggleSoundImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({bool toggle});
 }
 
 /// @nodoc
@@ -330,84 +202,57 @@ class __$$ToggleSoundImplCopyWithImpl<$Res>
   __$$ToggleSoundImplCopyWithImpl(
       _$ToggleSoundImpl _value, $Res Function(_$ToggleSoundImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? toggle = null,
-  }) {
-    return _then(_$ToggleSoundImpl(
-      toggle: null == toggle
-          ? _value.toggle
-          : toggle // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$ToggleSoundImpl implements _ToggleSound {
-  const _$ToggleSoundImpl({required this.toggle});
-
-  @override
-  final bool toggle;
+  const _$ToggleSoundImpl();
 
   @override
   String toString() {
-    return 'SoundEvent.toggleSound(toggle: $toggle)';
+    return 'SoundEvent.toggleSound()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ToggleSoundImpl &&
-            (identical(other.toggle, toggle) || other.toggle == toggle));
+        (other.runtimeType == runtimeType && other is _$ToggleSoundImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, toggle);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ToggleSoundImplCopyWith<_$ToggleSoundImpl> get copyWith =>
-      __$$ToggleSoundImplCopyWithImpl<_$ToggleSoundImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() playSound,
-    required TResult Function(bool toggle) toggleSound,
+    required TResult Function() toggleSound,
     required TResult Function(String audioPath) changeSound,
   }) {
-    return toggleSound(toggle);
+    return toggleSound();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? playSound,
-    TResult? Function(bool toggle)? toggleSound,
+    TResult? Function()? toggleSound,
     TResult? Function(String audioPath)? changeSound,
   }) {
-    return toggleSound?.call(toggle);
+    return toggleSound?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? playSound,
-    TResult Function(bool toggle)? toggleSound,
+    TResult Function()? toggleSound,
     TResult Function(String audioPath)? changeSound,
     required TResult orElse(),
   }) {
     if (toggleSound != null) {
-      return toggleSound(toggle);
+      return toggleSound();
     }
     return orElse();
   }
@@ -416,7 +261,6 @@ class _$ToggleSoundImpl implements _ToggleSound {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_PlaySound value) playSound,
     required TResult Function(_ToggleSound value) toggleSound,
     required TResult Function(_ChangeSound value) changeSound,
   }) {
@@ -427,7 +271,6 @@ class _$ToggleSoundImpl implements _ToggleSound {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_PlaySound value)? playSound,
     TResult? Function(_ToggleSound value)? toggleSound,
     TResult? Function(_ChangeSound value)? changeSound,
   }) {
@@ -438,7 +281,6 @@ class _$ToggleSoundImpl implements _ToggleSound {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_PlaySound value)? playSound,
     TResult Function(_ToggleSound value)? toggleSound,
     TResult Function(_ChangeSound value)? changeSound,
     required TResult orElse(),
@@ -451,12 +293,7 @@ class _$ToggleSoundImpl implements _ToggleSound {
 }
 
 abstract class _ToggleSound implements SoundEvent {
-  const factory _ToggleSound({required final bool toggle}) = _$ToggleSoundImpl;
-
-  bool get toggle;
-  @JsonKey(ignore: true)
-  _$$ToggleSoundImplCopyWith<_$ToggleSoundImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _ToggleSound() = _$ToggleSoundImpl;
 }
 
 /// @nodoc
@@ -525,8 +362,7 @@ class _$ChangeSoundImpl implements _ChangeSound {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() playSound,
-    required TResult Function(bool toggle) toggleSound,
+    required TResult Function() toggleSound,
     required TResult Function(String audioPath) changeSound,
   }) {
     return changeSound(audioPath);
@@ -536,8 +372,7 @@ class _$ChangeSoundImpl implements _ChangeSound {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? playSound,
-    TResult? Function(bool toggle)? toggleSound,
+    TResult? Function()? toggleSound,
     TResult? Function(String audioPath)? changeSound,
   }) {
     return changeSound?.call(audioPath);
@@ -547,8 +382,7 @@ class _$ChangeSoundImpl implements _ChangeSound {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? playSound,
-    TResult Function(bool toggle)? toggleSound,
+    TResult Function()? toggleSound,
     TResult Function(String audioPath)? changeSound,
     required TResult orElse(),
   }) {
@@ -562,7 +396,6 @@ class _$ChangeSoundImpl implements _ChangeSound {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_PlaySound value) playSound,
     required TResult Function(_ToggleSound value) toggleSound,
     required TResult Function(_ChangeSound value) changeSound,
   }) {
@@ -573,7 +406,6 @@ class _$ChangeSoundImpl implements _ChangeSound {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_PlaySound value)? playSound,
     TResult? Function(_ToggleSound value)? toggleSound,
     TResult? Function(_ChangeSound value)? changeSound,
   }) {
@@ -584,7 +416,6 @@ class _$ChangeSoundImpl implements _ChangeSound {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_PlaySound value)? playSound,
     TResult Function(_ToggleSound value)? toggleSound,
     TResult Function(_ChangeSound value)? changeSound,
     required TResult orElse(),
@@ -611,7 +442,6 @@ mixin _$SoundState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(bool canPlay) playSound,
     required TResult Function(String audioPath) audioChanged,
     required TResult Function(bool toggleValue) audioToggle,
   }) =>
@@ -619,7 +449,6 @@ mixin _$SoundState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(bool canPlay)? playSound,
     TResult? Function(String audioPath)? audioChanged,
     TResult? Function(bool toggleValue)? audioToggle,
   }) =>
@@ -627,7 +456,6 @@ mixin _$SoundState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(bool canPlay)? playSound,
     TResult Function(String audioPath)? audioChanged,
     TResult Function(bool toggleValue)? audioToggle,
     required TResult orElse(),
@@ -636,7 +464,6 @@ mixin _$SoundState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_PlayAudio value) playSound,
     required TResult Function(_AudioChanged value) audioChanged,
     required TResult Function(_AudioToggled value) audioToggle,
   }) =>
@@ -644,7 +471,6 @@ mixin _$SoundState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_PlayAudio value)? playSound,
     TResult? Function(_AudioChanged value)? audioChanged,
     TResult? Function(_AudioToggled value)? audioToggle,
   }) =>
@@ -652,7 +478,6 @@ mixin _$SoundState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_PlayAudio value)? playSound,
     TResult Function(_AudioChanged value)? audioChanged,
     TResult Function(_AudioToggled value)? audioToggle,
     required TResult orElse(),
@@ -696,8 +521,8 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$InitialImpl extends _Initial {
+  const _$InitialImpl() : super._();
 
   @override
   String toString() {
@@ -717,7 +542,6 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(bool canPlay) playSound,
     required TResult Function(String audioPath) audioChanged,
     required TResult Function(bool toggleValue) audioToggle,
   }) {
@@ -728,7 +552,6 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(bool canPlay)? playSound,
     TResult? Function(String audioPath)? audioChanged,
     TResult? Function(bool toggleValue)? audioToggle,
   }) {
@@ -739,7 +562,6 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(bool canPlay)? playSound,
     TResult Function(String audioPath)? audioChanged,
     TResult Function(bool toggleValue)? audioToggle,
     required TResult orElse(),
@@ -754,7 +576,6 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_PlayAudio value) playSound,
     required TResult Function(_AudioChanged value) audioChanged,
     required TResult Function(_AudioToggled value) audioToggle,
   }) {
@@ -765,7 +586,6 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_PlayAudio value)? playSound,
     TResult? Function(_AudioChanged value)? audioChanged,
     TResult? Function(_AudioToggled value)? audioToggle,
   }) {
@@ -776,7 +596,6 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_PlayAudio value)? playSound,
     TResult Function(_AudioChanged value)? audioChanged,
     TResult Function(_AudioToggled value)? audioToggle,
     required TResult orElse(),
@@ -788,153 +607,9 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements SoundState {
+abstract class _Initial extends SoundState {
   const factory _Initial() = _$InitialImpl;
-}
-
-/// @nodoc
-abstract class _$$PlayAudioImplCopyWith<$Res> {
-  factory _$$PlayAudioImplCopyWith(
-          _$PlayAudioImpl value, $Res Function(_$PlayAudioImpl) then) =
-      __$$PlayAudioImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({bool canPlay});
-}
-
-/// @nodoc
-class __$$PlayAudioImplCopyWithImpl<$Res>
-    extends _$SoundStateCopyWithImpl<$Res, _$PlayAudioImpl>
-    implements _$$PlayAudioImplCopyWith<$Res> {
-  __$$PlayAudioImplCopyWithImpl(
-      _$PlayAudioImpl _value, $Res Function(_$PlayAudioImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? canPlay = null,
-  }) {
-    return _then(_$PlayAudioImpl(
-      null == canPlay
-          ? _value.canPlay
-          : canPlay // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$PlayAudioImpl implements _PlayAudio {
-  const _$PlayAudioImpl(this.canPlay);
-
-  @override
-  final bool canPlay;
-
-  @override
-  String toString() {
-    return 'SoundState.playSound(canPlay: $canPlay)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PlayAudioImpl &&
-            (identical(other.canPlay, canPlay) || other.canPlay == canPlay));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, canPlay);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PlayAudioImplCopyWith<_$PlayAudioImpl> get copyWith =>
-      __$$PlayAudioImplCopyWithImpl<_$PlayAudioImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(bool canPlay) playSound,
-    required TResult Function(String audioPath) audioChanged,
-    required TResult Function(bool toggleValue) audioToggle,
-  }) {
-    return playSound(canPlay);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(bool canPlay)? playSound,
-    TResult? Function(String audioPath)? audioChanged,
-    TResult? Function(bool toggleValue)? audioToggle,
-  }) {
-    return playSound?.call(canPlay);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(bool canPlay)? playSound,
-    TResult Function(String audioPath)? audioChanged,
-    TResult Function(bool toggleValue)? audioToggle,
-    required TResult orElse(),
-  }) {
-    if (playSound != null) {
-      return playSound(canPlay);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_PlayAudio value) playSound,
-    required TResult Function(_AudioChanged value) audioChanged,
-    required TResult Function(_AudioToggled value) audioToggle,
-  }) {
-    return playSound(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_PlayAudio value)? playSound,
-    TResult? Function(_AudioChanged value)? audioChanged,
-    TResult? Function(_AudioToggled value)? audioToggle,
-  }) {
-    return playSound?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_PlayAudio value)? playSound,
-    TResult Function(_AudioChanged value)? audioChanged,
-    TResult Function(_AudioToggled value)? audioToggle,
-    required TResult orElse(),
-  }) {
-    if (playSound != null) {
-      return playSound(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _PlayAudio implements SoundState {
-  const factory _PlayAudio(final bool canPlay) = _$PlayAudioImpl;
-
-  bool get canPlay;
-  @JsonKey(ignore: true)
-  _$$PlayAudioImplCopyWith<_$PlayAudioImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const _Initial._() : super._();
 }
 
 /// @nodoc
@@ -970,8 +645,8 @@ class __$$AudioChangedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AudioChangedImpl implements _AudioChanged {
-  const _$AudioChangedImpl(this.audioPath);
+class _$AudioChangedImpl extends _AudioChanged {
+  const _$AudioChangedImpl(this.audioPath) : super._();
 
   @override
   final String audioPath;
@@ -1003,7 +678,6 @@ class _$AudioChangedImpl implements _AudioChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(bool canPlay) playSound,
     required TResult Function(String audioPath) audioChanged,
     required TResult Function(bool toggleValue) audioToggle,
   }) {
@@ -1014,7 +688,6 @@ class _$AudioChangedImpl implements _AudioChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(bool canPlay)? playSound,
     TResult? Function(String audioPath)? audioChanged,
     TResult? Function(bool toggleValue)? audioToggle,
   }) {
@@ -1025,7 +698,6 @@ class _$AudioChangedImpl implements _AudioChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(bool canPlay)? playSound,
     TResult Function(String audioPath)? audioChanged,
     TResult Function(bool toggleValue)? audioToggle,
     required TResult orElse(),
@@ -1040,7 +712,6 @@ class _$AudioChangedImpl implements _AudioChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_PlayAudio value) playSound,
     required TResult Function(_AudioChanged value) audioChanged,
     required TResult Function(_AudioToggled value) audioToggle,
   }) {
@@ -1051,7 +722,6 @@ class _$AudioChangedImpl implements _AudioChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_PlayAudio value)? playSound,
     TResult? Function(_AudioChanged value)? audioChanged,
     TResult? Function(_AudioToggled value)? audioToggle,
   }) {
@@ -1062,7 +732,6 @@ class _$AudioChangedImpl implements _AudioChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_PlayAudio value)? playSound,
     TResult Function(_AudioChanged value)? audioChanged,
     TResult Function(_AudioToggled value)? audioToggle,
     required TResult orElse(),
@@ -1074,8 +743,9 @@ class _$AudioChangedImpl implements _AudioChanged {
   }
 }
 
-abstract class _AudioChanged implements SoundState {
+abstract class _AudioChanged extends SoundState {
   const factory _AudioChanged(final String audioPath) = _$AudioChangedImpl;
+  const _AudioChanged._() : super._();
 
   String get audioPath;
   @JsonKey(ignore: true)
@@ -1116,8 +786,8 @@ class __$$AudioToggledImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AudioToggledImpl implements _AudioToggled {
-  const _$AudioToggledImpl(this.toggleValue);
+class _$AudioToggledImpl extends _AudioToggled {
+  const _$AudioToggledImpl(this.toggleValue) : super._();
 
   @override
   final bool toggleValue;
@@ -1149,7 +819,6 @@ class _$AudioToggledImpl implements _AudioToggled {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(bool canPlay) playSound,
     required TResult Function(String audioPath) audioChanged,
     required TResult Function(bool toggleValue) audioToggle,
   }) {
@@ -1160,7 +829,6 @@ class _$AudioToggledImpl implements _AudioToggled {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(bool canPlay)? playSound,
     TResult? Function(String audioPath)? audioChanged,
     TResult? Function(bool toggleValue)? audioToggle,
   }) {
@@ -1171,7 +839,6 @@ class _$AudioToggledImpl implements _AudioToggled {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(bool canPlay)? playSound,
     TResult Function(String audioPath)? audioChanged,
     TResult Function(bool toggleValue)? audioToggle,
     required TResult orElse(),
@@ -1186,7 +853,6 @@ class _$AudioToggledImpl implements _AudioToggled {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_PlayAudio value) playSound,
     required TResult Function(_AudioChanged value) audioChanged,
     required TResult Function(_AudioToggled value) audioToggle,
   }) {
@@ -1197,7 +863,6 @@ class _$AudioToggledImpl implements _AudioToggled {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_PlayAudio value)? playSound,
     TResult? Function(_AudioChanged value)? audioChanged,
     TResult? Function(_AudioToggled value)? audioToggle,
   }) {
@@ -1208,7 +873,6 @@ class _$AudioToggledImpl implements _AudioToggled {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_PlayAudio value)? playSound,
     TResult Function(_AudioChanged value)? audioChanged,
     TResult Function(_AudioToggled value)? audioToggle,
     required TResult orElse(),
@@ -1220,8 +884,9 @@ class _$AudioToggledImpl implements _AudioToggled {
   }
 }
 
-abstract class _AudioToggled implements SoundState {
+abstract class _AudioToggled extends SoundState {
   const factory _AudioToggled(final bool toggleValue) = _$AudioToggledImpl;
+  const _AudioToggled._() : super._();
 
   bool get toggleValue;
   @JsonKey(ignore: true)

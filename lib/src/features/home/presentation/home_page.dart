@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:motivational/core/assets/assets.gen.dart';
 import 'package:motivational/src/core/routes/routes.dart';
 import 'package:motivational/src/core/theme/app_colors.dart';
 import 'package:motivational/src/core/theme/app_styles.dart';
@@ -12,9 +13,11 @@ import 'package:motivational/src/core/widgets/scaffold_wrapper.dart';
 import 'package:motivational/src/features/home/bloc/get_random/get_random_quotes_cubit.dart';
 import 'package:motivational/src/features/home/bloc/painter_saver/painter_saver_cubit.dart';
 import 'package:motivational/src/features/home/bloc/share/share_cubit.dart';
+import 'package:motivational/src/features/home/bloc/sound_controller/bloc/sound_bloc.dart';
 import 'package:motivational/src/features/home/presentation/widgets/quote_viewer.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,9 +28,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late ScreenshotController screenshotController;
+  late AudioPlayer _audioPlayer;
+
   @override
   void initState() {
     super.initState();
+    _audioPlayer = AudioPlayer();
+
     screenshotController = ScreenshotController();
     context.read<GetRandomQuotesCubit>().getRandomQuotes();
     context.read<PainterSaverCubit>().getPainter();
@@ -54,6 +61,7 @@ class _HomePageState extends State<HomePage> {
           );
         },
         child: Builder(builder: (context) {
+          _audioPlayer.play(AssetSource("audio/audio_1.mp3"));
           return ScaffoldWrapper(
             body: Stack(
               children: [
@@ -124,16 +132,22 @@ class BottomWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-          child: CustomButton.iconText(
-            label: '',
-            labelStyle: AppStyles.text12PxMedium,
-            onPressed: () {},
-            icon: const Icon(CupertinoIcons.speaker_1_fill),
-          ),
+        BlocBuilder<SoundBloc, SoundState>(
+          builder: (context, state) {
+            return Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              child: CustomButton.iconText(
+                label: '',
+                labelStyle: AppStyles.text12PxMedium,
+                onPressed: () {
+                  context.read<SoundBloc>().add(SoundEvent.toggleSound());
+                },
+                icon: Icon(CupertinoIcons.speaker_slash_fill),
+              ),
+            );
+          },
         ),
         Row(
           children: [
@@ -159,11 +173,15 @@ class BottomWidget extends StatelessWidget {
                 ),
                 color: AppColors.statusRed,
               ),
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.favorite,
-                ),
+              child: BlocBuilder<SoundBloc, SoundState>(
+                builder: (context, state) {
+                  return IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.favorite,
+                    ),
+                  );
+                },
               ),
             ),
             15.horizontalSpace,

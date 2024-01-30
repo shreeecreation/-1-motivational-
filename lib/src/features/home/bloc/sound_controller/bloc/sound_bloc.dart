@@ -9,7 +9,7 @@ part 'sound_state.dart';
 part 'sound_bloc.freezed.dart';
 
 class SoundBloc extends Bloc<SoundEvent, SoundState> {
-  SoundBloc() : super(_Initial()) {
+  SoundBloc() : super(const _Initial()) {
     on<_ToggleSound>(toggleSound);
     on<_ChangeSound>(changeSound);
   }
