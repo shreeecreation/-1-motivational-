@@ -56,7 +56,10 @@ class PainterSaverCubit extends Cubit<PainterSaverState> {
   Future<void> setLocalImage(String image) async {
     final _state = state as _Mode;
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    
     prefs.setString('selectedImage', image);
     emit(PainterSaverState.mode(image: image, color: _state.color));
   }
+
+  
 }

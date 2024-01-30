@@ -58,13 +58,13 @@ class _HomePageState extends State<HomePage> {
           return ScaffoldWrapper(
             body: Stack(
               children: [
-                // I changes because I just want to keep the background image static 
+                // I changes because I just want to keep the background image static
                 Screenshot(
                   controller: screenshotController,
                   child: Stack(
                     children: [
                       Positioned.fill(
-                        child: backgroundElement.image == null
+                        child: backgroundElement.image == null || backgroundElement.image == ''
                             ? const SizedBox.shrink()
                             : Image.file(
                                 File(backgroundElement.image!),
