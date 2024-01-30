@@ -5,10 +5,10 @@ import 'package:motivational/src/core/theme/app_colors.dart';
 import 'package:motivational/src/core/theme/app_styles.dart';
 import 'package:motivational/src/core/widgets/cache_image_viewer.dart';
 import 'package:motivational/src/core/widgets/scaffold_wrapper.dart';
-import 'package:motivational/src/features/home/bloc/image/image_cubit.dart';
 import 'package:motivational/src/features/home/bloc/painter_saver/painter_saver_cubit.dart';
 import 'package:motivational/src/features/home/domain/enum/image_type_enum.dart';
 
+import '../bloc/fetch_image/image_cubit.dart';
 import '../domain/constant/painter_constant.dart';
 
 class PainterPage extends StatelessWidget {
