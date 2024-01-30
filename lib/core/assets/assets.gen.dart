@@ -11,6 +11,28 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 
+class $AssetsAudioGen {
+  const $AssetsAudioGen();
+
+  /// File path: assets/audio/audio_1.mp3
+  String get audio1 => 'assets/audio/audio_1.mp3';
+
+  /// File path: assets/audio/audio_2.mp3
+  String get audio2 => 'assets/audio/audio_2.mp3';
+
+  /// File path: assets/audio/audio_3.mp3
+  String get audio3 => 'assets/audio/audio_3.mp3';
+
+  /// File path: assets/audio/audio_4.mp3
+  String get audio4 => 'assets/audio/audio_4.mp3';
+
+  /// File path: assets/audio/audio_5.mp3
+  String get audio5 => 'assets/audio/audio_5.mp3';
+
+  /// List of all assets
+  List<String> get values => [audio1, audio2, audio3, audio4, audio5];
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
@@ -34,6 +56,7 @@ class $AssetsSvgGen {
 class Assets {
   Assets._();
 
+  static const $AssetsAudioGen audio = $AssetsAudioGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
 }

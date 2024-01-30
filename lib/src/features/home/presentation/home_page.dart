@@ -129,8 +129,8 @@ class BottomWidget extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
           child: CustomButton.iconText(
-            label: 'Sound On',
-            labelStyle: AppStyles.text11Px,
+            label: '',
+            labelStyle: AppStyles.text12PxMedium,
             onPressed: () {},
             icon: const Icon(CupertinoIcons.speaker_1_fill),
           ),

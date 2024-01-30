@@ -100,7 +100,7 @@ class QuoteViewer extends StatelessWidget {
                               },
                               icon: const Icon(
                                 Icons.ios_share,
-                                size: 35,
+                                size: 30,
                               ),
                             ),
                             12.horizontalSpace,
@@ -112,7 +112,7 @@ class QuoteViewer extends StatelessWidget {
                               },
                               icon: const Icon(
                                 Icons.favorite_outline,
-                                size: 35,
+                                size: 30,
                               ),
                             ),
                           ],

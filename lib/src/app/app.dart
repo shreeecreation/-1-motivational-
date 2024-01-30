@@ -7,6 +7,7 @@ import 'package:motivational/src/features/home/bloc/favorite_saver/favorite_save
 import 'package:motivational/src/features/home/bloc/fetch_image/image_cubit.dart';
 import 'package:motivational/src/features/home/bloc/get_random/get_random_quotes_cubit.dart';
 import 'package:motivational/src/features/home/bloc/painter_saver/painter_saver_cubit.dart';
+import 'package:motivational/src/features/home/bloc/sound_controller/bloc/sound_bloc.dart';
 import 'package:motivational/src/features/home/presentation/widgets/quote_viewer.dart';
 
 class App extends StatelessWidget {
@@ -20,6 +21,7 @@ class App extends StatelessWidget {
         BlocProvider(create: (context) => FavoriteSaverCubit()),
         BlocProvider(create: (context) => GetRandomQuotesCubit()),
         BlocProvider(create: (context) => ImageCubit()..getImages()),
+        BlocProvider(create: (context) => SoundBloc()..add(SoundEvent.playSound())),
       ],
       child: ScreenUtilInit(
         child: Builder(builder: (context) {

@@ -83,6 +83,7 @@ flutter:
   assets:
     - assets/svg/
     - assets/images/
+    - assets/audio/
 
 flutter_gen:
   output: lib/core/assets/
