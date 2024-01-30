@@ -23,7 +23,6 @@ class UnsplashRepository {
     if (response.statusCode == 200) {
       for (var i = 0; i < (response.data as List).length; i++) {
         images.add(response.data[i]['urls']['regular']);
-        print(response.data[i]['urls']['regular']);
       }
       return images;
     } else {

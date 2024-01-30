@@ -7,7 +7,6 @@ final class AuthRepository {
 
   Future<void> signInWithGoogle() async {
     pb.client.collection('users').authWithOAuth2('google', (url) {
-      print(url);
     });
   }
 }

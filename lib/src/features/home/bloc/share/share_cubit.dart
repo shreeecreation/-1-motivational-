@@ -1,8 +1,5 @@
-import 'dart:ui';
-
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:motivational/src/features/home/presentation/home_page.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 
@@ -25,7 +22,6 @@ class ShareCubit extends Cubit<ShareState> {
         emit(const ShareState.error());
       }
     } catch (e) {
-      print(e);
       emit(const ShareState.error());
     }
   }

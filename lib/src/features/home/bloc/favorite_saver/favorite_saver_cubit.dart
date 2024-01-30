@@ -23,10 +23,9 @@ class FavoriteSaverCubit extends Cubit<FavoriteSaverState> {
         existingQuotesJsonList.add(quoteJson);
         await prefs.setStringList(quotesKey, existingQuotesJsonList);
       }
-
-      print("done");
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
+      emit(const FavoriteSaverState.error());
     }
   }
 
@@ -50,7 +49,10 @@ class FavoriteSaverCubit extends Cubit<FavoriteSaverState> {
         final response = existingQuotesJsonList.map((quoteJson) => QuotesModel.fromJson(jsonDecode(quoteJson))).toList();
         emit(_state.copyWith(quotesModel: response));
       }
-    } catch (e) {}
+    } catch (e) {
+      emit(const FavoriteSaverState.error());
+
+    }
   }
 
   void getList() async {
@@ -66,7 +68,7 @@ class FavoriteSaverCubit extends Cubit<FavoriteSaverState> {
         emit(FavoriteSaverState.success(quotesModel: quotes));
       }
     } catch (e) {
-      print(e.toString());
+      emit(const FavoriteSaverState.error());
     }
   }
 }

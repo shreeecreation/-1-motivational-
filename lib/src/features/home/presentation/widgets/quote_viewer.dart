@@ -1,9 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:motivational/src/core/theme/app_colors.dart';
 import 'package:motivational/src/core/theme/app_styles.dart';
 import 'package:motivational/src/features/auth/screens/auth_bottom_sheet.dart';
 import 'package:motivational/src/features/home/bloc/painter_saver/painter_saver_cubit.dart';

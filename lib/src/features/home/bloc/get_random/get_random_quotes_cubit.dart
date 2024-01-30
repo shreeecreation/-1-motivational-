@@ -1,15 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:motivational/src/core/api/api_url.dart';
 import 'package:motivational/src/core/clients/pocket_base_client.dart';
 import 'package:motivational/src/features/home/domain/model/quotes_model.dart';
-import 'package:dio/dio.dart';
-
 part 'get_random_quotes_state.dart';
 part 'get_random_quotes_cubit.freezed.dart';
 
 class GetRandomQuotesCubit extends Cubit<GetRandomQuotesState> {
-  GetRandomQuotesCubit() : super(GetRandomQuotesState.initial());
+  GetRandomQuotesCubit() : super(const GetRandomQuotesState.initial());
   final pb = PocketBaseClient();
 
   final int _limit = 5;
@@ -31,9 +28,7 @@ class GetRandomQuotesCubit extends Cubit<GetRandomQuotesState> {
         },
       );
       totalItem = response.totalItems;
-      List<QuotesModel> quotes = response.items
-          .map((quoteData) => QuotesModel.fromJson(quoteData.data))
-          .toList();
+      List<QuotesModel> quotes = response.items.map((quoteData) => QuotesModel.fromJson(quoteData.data)).toList();
       _quotes = quotes;
       emit(GetRandomQuotesState.success(posts: quotes));
     } catch (e) {
@@ -55,9 +50,7 @@ class GetRandomQuotesCubit extends Cubit<GetRandomQuotesState> {
           // 'is_published': true,
         },
       );
-      List<QuotesModel> quotes = (response.items)
-          .map((quoteData) => QuotesModel.fromJson(quoteData.data))
-          .toList();
+      List<QuotesModel> quotes = (response.items).map((quoteData) => QuotesModel.fromJson(quoteData.data)).toList();
 
       if (state is _Success) {
         final _state = state as _Success;
@@ -65,7 +58,7 @@ class GetRandomQuotesCubit extends Cubit<GetRandomQuotesState> {
         _quotes = [..._quotes, ...quotes];
       }
     } catch (e) {
-      print(e);
+      emit(GetRandomQuotesState.error(error: e.toString()));
     }
   }
 }

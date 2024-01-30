@@ -125,7 +125,7 @@ class PainterPage extends StatelessWidget {
                             child: Card(
                                 elevation: 0.8,
                                 child: ClipRRect(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                                     child: AppCacheImageViewer(imageUrl: image, imageTypeEnum: ImageTypeEnum.network))),
                           );
                         },
