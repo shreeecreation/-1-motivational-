@@ -28,7 +28,9 @@ class GetRandomQuotesCubit extends Cubit<GetRandomQuotesState> {
         },
       );
       totalItem = response.totalItems;
-      List<QuotesModel> quotes = response.items.map((quoteData) => QuotesModel.fromJson(quoteData.data)).toList();
+      List<QuotesModel> quotes = response.items
+          .map((quoteData) => QuotesModel.fromJson(quoteData.data))
+          .toList();
       _quotes = quotes;
       emit(GetRandomQuotesState.success(posts: quotes));
     } catch (e) {
@@ -50,7 +52,9 @@ class GetRandomQuotesCubit extends Cubit<GetRandomQuotesState> {
           // 'is_published': true,
         },
       );
-      List<QuotesModel> quotes = (response.items).map((quoteData) => QuotesModel.fromJson(quoteData.data)).toList();
+      List<QuotesModel> quotes = (response.items)
+          .map((quoteData) => QuotesModel.fromJson(quoteData.data))
+          .toList();
 
       if (state is _Success) {
         final _state = state as _Success;

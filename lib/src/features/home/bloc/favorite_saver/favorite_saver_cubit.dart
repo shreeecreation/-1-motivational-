@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:motivational/src/core/clients/pocket_base_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../domain/model/quotes_model.dart';
@@ -11,29 +12,19 @@ part 'favorite_saver_cubit.freezed.dart';
 class FavoriteSaverCubit extends Cubit<FavoriteSaverState> {
   FavoriteSaverCubit() : super(const FavoriteSaverState.initial());
   static const String quotesKey = 'quotes';
+  final pb = PocketBaseClient();
 
-  void addToList(QuotesModel quote) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    try {
-      List<String>? existingQuotesJsonList = prefs.getStringList(quotesKey) ?? [];
-
-      String quoteJson = jsonEncode(quote.toJson());
-      if (!existingQuotesJsonList.contains(quoteJson)) {
-        existingQuotesJsonList.add(quoteJson);
-        await prefs.setStringList(quotesKey, existingQuotesJsonList);
-      }
-    } catch (e) {
-      // print(e.toString());
-      emit(const FavoriteSaverState.error());
-    }
+  Future<void> addToList(QuotesModel quote) async {
+    emit(const FavoriteSaverState.loading());
+    // pb.client.collection('favourite').getOne(quote.id);
   }
 
   void removeFromList(QuotesModel quotes) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     try {
-      List<String>? existingQuotesJsonList = prefs.getStringList(quotesKey) ?? [];
+      List<String>? existingQuotesJsonList =
+          prefs.getStringList(quotesKey) ?? [];
 
       int indexToRemove = existingQuotesJsonList.indexWhere((quoteJson) {
         QuotesModel storedQuote = QuotesModel.fromJson(jsonDecode(quoteJson));
@@ -46,12 +37,13 @@ class FavoriteSaverCubit extends Cubit<FavoriteSaverState> {
       await prefs.setStringList(quotesKey, existingQuotesJsonList);
       if (state is _Success) {
         final _state = state as _Success;
-        final response = existingQuotesJsonList.map((quoteJson) => QuotesModel.fromJson(jsonDecode(quoteJson))).toList();
+        final response = existingQuotesJsonList
+            .map((quoteJson) => QuotesModel.fromJson(jsonDecode(quoteJson)))
+            .toList();
         emit(_state.copyWith(quotesModel: response));
       }
     } catch (e) {
       emit(const FavoriteSaverState.error());
-
     }
   }
 
@@ -63,7 +55,9 @@ class FavoriteSaverCubit extends Cubit<FavoriteSaverState> {
       List<String>? quotesJsonList = prefs.getStringList(quotesKey);
 
       if (quotesJsonList != null) {
-        final quotes = quotesJsonList.map((quoteJson) => QuotesModel.fromJson(jsonDecode(quoteJson))).toList();
+        final quotes = quotesJsonList
+            .map((quoteJson) => QuotesModel.fromJson(jsonDecode(quoteJson)))
+            .toList();
 
         emit(FavoriteSaverState.success(quotesModel: quotes));
       }

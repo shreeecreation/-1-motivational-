@@ -12,6 +12,7 @@ import 'package:motivational/src/core/theme/app_colors.dart';
 import 'package:motivational/src/core/theme/app_styles.dart';
 import 'package:motivational/src/core/widgets/custom_button.dart';
 import 'package:motivational/src/core/widgets/scaffold_wrapper.dart';
+import 'package:motivational/src/features/auth/screens/blocs/user/user_cubit.dart';
 import 'package:motivational/src/features/home/bloc/get_random/get_random_quotes_cubit.dart';
 import 'package:motivational/src/features/home/bloc/painter_saver/painter_saver_cubit.dart';
 import 'package:motivational/src/features/home/bloc/share/share_cubit.dart';
@@ -58,18 +59,22 @@ class _HomePageState extends State<HomePage> {
 
     return BlocProvider(
       create: (context) => ShareCubit(),
-      child: BlocListener<ShareCubit, ShareState>(
-        listener: (context, state) {
-          state.maybeWhen(
-            orElse: () => null,
-            success: (image) {
-              Share.shareXFiles(
-                [XFile(image)],
-                subject: 'Made with Motivator App',
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<ShareCubit, ShareState>(
+            listener: (context, state) {
+              state.maybeWhen(
+                orElse: () => null,
+                success: (image) {
+                  Share.shareXFiles(
+                    [XFile(image)],
+                    subject: 'Made with Motivator App',
+                  );
+                },
               );
             },
-          );
-        },
+          ),
+        ],
         child: Builder(builder: (context) {
           return BlocListener<ToggleSoundCubit, ToggleSoundState>(
             bloc: context.read<ToggleSoundCubit>()..toggleSound(),
@@ -88,7 +93,8 @@ class _HomePageState extends State<HomePage> {
                     child: Stack(
                       children: [
                         Positioned.fill(
-                          child: backgroundElement.image == null || backgroundElement.image == ''
+                          child: backgroundElement.image == null ||
+                                  backgroundElement.image == ''
                               ? const SizedBox.shrink()
                               : Image.file(
                                   File(backgroundElement.image!),
@@ -104,7 +110,9 @@ class _HomePageState extends State<HomePage> {
                                   onPageChanged: (value) {
                                     page = value;
                                     if (page == data.length - 2) {
-                                      context.read<GetRandomQuotesCubit>().addMoreRandomQuotes();
+                                      context
+                                          .read<GetRandomQuotesCubit>()
+                                          .addMoreRandomQuotes();
                                     }
                                   },
                                   scrollDirection: Axis.vertical,
@@ -112,7 +120,8 @@ class _HomePageState extends State<HomePage> {
                                   itemBuilder: (context, index) {
                                     return QuoteViewer(
                                       quote: data[index],
-                                      screenshotController: screenshotController,
+                                      screenshotController:
+                                          screenshotController,
                                     );
                                   },
                                 );
@@ -157,14 +166,20 @@ class BottomWidget extends StatelessWidget {
           child: BlocBuilder<ToggleSoundCubit, ToggleSoundState>(
             builder: (context, state) {
               return CustomButton.iconText(
-                  label: '',
-                  labelStyle: AppStyles.text12PxMedium,
-                  onPressed: () {},
-                  icon: state.maybeWhen(orElse: () {
-                    return Icon(Icons.abc);
-                  }, toggle: (data) {
-                    return Icon(data ? CupertinoIcons.speaker_2_fill : CupertinoIcons.speaker_slash_fill);
-                  }));
+                label: '',
+                labelStyle: AppStyles.text12PxMedium,
+                onPressed: () {},
+                icon: state.maybeWhen(
+                  orElse: () {
+                    return const Icon(Icons.abc);
+                  },
+                  toggle: (data) {
+                    return Icon(data
+                        ? CupertinoIcons.speaker_2_fill
+                        : CupertinoIcons.speaker_slash_fill);
+                  },
+                ),
+              );
             },
           ),
         ),
@@ -198,6 +213,47 @@ class BottomWidget extends StatelessWidget {
                   Icons.favorite,
                 ),
               ),
+            ),
+            15.horizontalSpace,
+            BlocConsumer<UserCubit, UserState>(
+              listener: (context, state) {
+                state.maybeWhen(
+                  orElse: () => null,
+                  success: (user) {
+                    Get.showSnackbar(GetSnackBar(
+                      message: 'Welcome ${user.data['name']}',
+                      snackPosition: SnackPosition.TOP,
+                      margin: const EdgeInsets.all(20),
+                      duration: const Duration(seconds: 2),
+                    ));
+                  },
+                );
+              },
+              builder: (context, state) {
+                return state.maybeWhen(
+                  orElse: SizedBox.shrink,
+                  success: (user) {
+                    return Container(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        color: AppColors.black,
+                      ),
+                      height: 40,
+                      width: 40,
+                      child: Center(
+                        child: Text(
+                          (user.data['name'] as String).substring(0, 1),
+                          style: AppStyles.text14PxBold.copyWith(
+                            color: AppColors.white,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
             ),
             15.horizontalSpace,
           ],

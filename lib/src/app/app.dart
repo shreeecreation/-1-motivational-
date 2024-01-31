@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
 import 'package:motivational/src/core/routes/routes.dart';
+import 'package:motivational/src/features/auth/screens/blocs/auth/auth_cubit.dart';
+import 'package:motivational/src/features/auth/screens/blocs/user/user_cubit.dart';
 import 'package:motivational/src/features/home/bloc/favorite_saver/favorite_saver_cubit.dart';
 import 'package:motivational/src/features/home/bloc/fetch_image/image_cubit.dart';
 import 'package:motivational/src/features/home/bloc/get_random/get_random_quotes_cubit.dart';
@@ -22,6 +24,11 @@ class App extends StatelessWidget {
         BlocProvider(create: (context) => GetRandomQuotesCubit()),
         BlocProvider(create: (context) => ImageCubit()..getImages()),
         BlocProvider(create: (context) => ToggleSoundCubit()..toggleSound()),
+        BlocProvider(
+          create: (context) => UserCubit()..listenForAuthChanges(),
+          lazy: false,
+        ),
+        BlocProvider(create: (context) => AuthCubit()),
       ],
       child: ScreenUtilInit(
         child: Builder(builder: (context) {

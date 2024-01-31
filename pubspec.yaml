@@ -57,6 +57,7 @@ dependencies:
   url_launcher: ^6.2.4
   flutter_inappwebview: ^5.8.0
   just_audio: ^0.9.36
+  in_app_webview: ^0.0.9
 
 
 dependency_overrides:

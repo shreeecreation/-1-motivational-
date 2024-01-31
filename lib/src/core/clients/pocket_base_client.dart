@@ -5,7 +5,7 @@ import 'package:pocketbase/pocketbase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PocketBaseClient {
-  static const String _baseUrl = 'https://thank-rather.pockethost.io';
+  static const String _baseUrl = 'https://thank-rather.pockethost.io/';
 
   static PocketBaseClient? _instance;
   PocketBase? _pb;
