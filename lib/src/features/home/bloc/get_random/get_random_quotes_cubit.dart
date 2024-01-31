@@ -25,6 +25,7 @@ class GetRandomQuotesCubit extends Cubit<GetRandomQuotesState> {
         query: {
           // "tags": {"\$in": ["motivational", "inspirational", "success"]},
           // 'is_published': true,
+          'sort': "@random"
         },
       );
       totalItem = response.totalItems;
