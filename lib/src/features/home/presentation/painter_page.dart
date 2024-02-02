@@ -6,6 +6,7 @@ import 'package:motivational/src/core/theme/app_styles.dart';
 import 'package:motivational/src/core/widgets/cache_image_viewer.dart';
 import 'package:motivational/src/core/widgets/scaffold_wrapper.dart';
 import 'package:motivational/src/features/home/bloc/painter_saver/painter_saver_cubit.dart';
+import 'package:motivational/src/features/home/bloc/sound_controller/save_sound_cubit.dart';
 import 'package:motivational/src/features/home/domain/enum/image_type_enum.dart';
 
 import '../bloc/fetch_image/image_cubit.dart';
@@ -49,6 +50,41 @@ class PainterPage extends StatelessWidget {
                         child: const SizedBox(
                           height: 100,
                           width: 100,
+                        ),
+                      ),
+                    );
+                  }),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text('Music', style: AppStyles.text20PxMedium),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: SizedBox(
+              height: 120,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: PainterConstatnt.musicConstant.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                        context.read<SaveSoundCubit>().saveSound(index);
+                      },
+                      child: Card(
+                        elevation: 0.8,
+                        // color: PainterConstatnt.painterConstant[index],
+                        child: SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(PainterConstatnt.musicConstant.keys.elementAt(index)),
+                            ),
+                          ),
                         ),
                       ),
                     );

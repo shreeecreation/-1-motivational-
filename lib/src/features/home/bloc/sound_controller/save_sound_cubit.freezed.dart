@@ -19,19 +19,19 @@ mixin _$SaveSoundState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String soundPath) saveSound,
+    required TResult Function(int soundPathIndex) saveSound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String soundPath)? saveSound,
+    TResult? Function(int soundPathIndex)? saveSound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String soundPath)? saveSound,
+    TResult Function(int soundPathIndex)? saveSound,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +113,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String soundPath) saveSound,
+    required TResult Function(int soundPathIndex) saveSound,
   }) {
     return initial();
   }
@@ -122,7 +122,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String soundPath)? saveSound,
+    TResult? Function(int soundPathIndex)? saveSound,
   }) {
     return initial?.call();
   }
@@ -131,7 +131,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String soundPath)? saveSound,
+    TResult Function(int soundPathIndex)? saveSound,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -182,7 +182,7 @@ abstract class _$$SaveSoundImplCopyWith<$Res> {
           _$SaveSoundImpl value, $Res Function(_$SaveSoundImpl) then) =
       __$$SaveSoundImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String soundPath});
+  $Res call({int soundPathIndex});
 }
 
 /// @nodoc
@@ -196,13 +196,13 @@ class __$$SaveSoundImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? soundPath = null,
+    Object? soundPathIndex = null,
   }) {
     return _then(_$SaveSoundImpl(
-      soundPath: null == soundPath
-          ? _value.soundPath
-          : soundPath // ignore: cast_nullable_to_non_nullable
-              as String,
+      soundPathIndex: null == soundPathIndex
+          ? _value.soundPathIndex
+          : soundPathIndex // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -210,14 +210,14 @@ class __$$SaveSoundImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SaveSoundImpl implements _SaveSound {
-  const _$SaveSoundImpl({required this.soundPath});
+  const _$SaveSoundImpl({required this.soundPathIndex});
 
   @override
-  final String soundPath;
+  final int soundPathIndex;
 
   @override
   String toString() {
-    return 'SaveSoundState.saveSound(soundPath: $soundPath)';
+    return 'SaveSoundState.saveSound(soundPathIndex: $soundPathIndex)';
   }
 
   @override
@@ -225,12 +225,12 @@ class _$SaveSoundImpl implements _SaveSound {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SaveSoundImpl &&
-            (identical(other.soundPath, soundPath) ||
-                other.soundPath == soundPath));
+            (identical(other.soundPathIndex, soundPathIndex) ||
+                other.soundPathIndex == soundPathIndex));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, soundPath);
+  int get hashCode => Object.hash(runtimeType, soundPathIndex);
 
   @JsonKey(ignore: true)
   @override
@@ -242,29 +242,29 @@ class _$SaveSoundImpl implements _SaveSound {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String soundPath) saveSound,
+    required TResult Function(int soundPathIndex) saveSound,
   }) {
-    return saveSound(soundPath);
+    return saveSound(soundPathIndex);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String soundPath)? saveSound,
+    TResult? Function(int soundPathIndex)? saveSound,
   }) {
-    return saveSound?.call(soundPath);
+    return saveSound?.call(soundPathIndex);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String soundPath)? saveSound,
+    TResult Function(int soundPathIndex)? saveSound,
     required TResult orElse(),
   }) {
     if (saveSound != null) {
-      return saveSound(soundPath);
+      return saveSound(soundPathIndex);
     }
     return orElse();
   }
@@ -302,9 +302,10 @@ class _$SaveSoundImpl implements _SaveSound {
 }
 
 abstract class _SaveSound implements SaveSoundState {
-  const factory _SaveSound({required final String soundPath}) = _$SaveSoundImpl;
+  const factory _SaveSound({required final int soundPathIndex}) =
+      _$SaveSoundImpl;
 
-  String get soundPath;
+  int get soundPathIndex;
   @JsonKey(ignore: true)
   _$$SaveSoundImplCopyWith<_$SaveSoundImpl> get copyWith =>
       throw _privateConstructorUsedError;

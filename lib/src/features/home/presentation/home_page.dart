@@ -14,7 +14,9 @@ import 'package:motivational/src/features/auth/screens/blocs/user/user_cubit.dar
 import 'package:motivational/src/features/home/bloc/get_random/get_random_quotes_cubit.dart';
 import 'package:motivational/src/features/home/bloc/painter_saver/painter_saver_cubit.dart';
 import 'package:motivational/src/features/home/bloc/share/share_cubit.dart';
+import 'package:motivational/src/features/home/bloc/sound_controller/save_sound_cubit.dart';
 import 'package:motivational/src/features/home/bloc/sound_controller/toggle_sound_cubit.dart';
+import 'package:motivational/src/features/home/domain/constant/painter_constant.dart';
 import 'package:motivational/src/features/home/presentation/widgets/quote_viewer.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
@@ -26,15 +28,20 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   late ScreenshotController screenshotController;
   late AudioPlayer _audioPlayer;
+  bool isMuted = false;
 
   @override
   void initState() {
     super.initState();
-    _audioPlayer = AudioPlayer();
-    _audioPlayer.setAsset('assets/audio/audio_1.mp3');
+    _audioPlayer = AudioPlayer()..setLoopMode(LoopMode.all);
+    WidgetsBinding.instance.addObserver(MyAppLifecycleObserver(
+        audioPlayer: _audioPlayer,
+        onResumed: () {
+          !isMuted ? _audioPlayer.play() : _audioPlayer.stop();
+        }));
 
     screenshotController = ScreenshotController();
     context.read<GetRandomQuotesCubit>().getRandomQuotes();
@@ -57,88 +64,99 @@ class _HomePageState extends State<HomePage> {
 
     return BlocProvider(
       create: (context) => ShareCubit(),
-      child: MultiBlocListener(
-        listeners: [
-          BlocListener<ShareCubit, ShareState>(
-            listener: (context, state) {
-              state.maybeWhen(
-                orElse: () => null,
-                success: (image) {
-                  Share.shareXFiles(
-                    [XFile(image)],
-                    subject: 'Made with Motivator App',
-                  );
-                },
-              );
-            },
-          ),
-        ],
-        child: Builder(builder: (context) {
-          return BlocListener<ToggleSoundCubit, ToggleSoundState>(
-            bloc: context.read<ToggleSoundCubit>()..toggleSound(),
-            listener: (context, state) {
-              state.maybeWhen(
-                  orElse: () {},
-                  toggle: (value) {
-                    value ? _audioPlayer.play() : _audioPlayer.pause();
-                  });
-            },
-            child: ScaffoldWrapper(
-              body: Stack(
-                children: [
-                  Screenshot(
-                    controller: screenshotController,
-                    child: Stack(
-                      children: [
-                        Positioned.fill(
-                          child: backgroundElement.image == null || backgroundElement.image == ''
-                              ? const SizedBox.shrink()
-                              : Image.file(
-                                  File(backgroundElement.image!),
-                                  fit: BoxFit.cover,
-                                ),
-                        ),
-                        BlocBuilder<GetRandomQuotesCubit, GetRandomQuotesState>(
-                          builder: (context, state) {
-                            return state.maybeWhen(
-                              orElse: () => const SizedBox.shrink(),
-                              success: (data, _, hasMoreItems) {
-                                return PageView.builder(
-                                  onPageChanged: (value) {
-                                    page = value;
-                                    if (page == data.length - 2) {
-                                      context.read<GetRandomQuotesCubit>().addMoreRandomQuotes();
-                                    }
-                                  },
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: data.length,
-                                  itemBuilder: (context, index) {
-                                    return QuoteViewer(
-                                      quote: data[index],
-                                      screenshotController: screenshotController,
-                                    );
-                                  },
-                                );
-                              },
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 20.0, left: 20),
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: BottomWidget(),
-                    ),
-                  ),
-                ],
-              ),
+      child: Builder(builder: (context) {
+        return MultiBlocListener(
+          listeners: [
+            BlocListener<ShareCubit, ShareState>(
+              listener: (context, state) {
+                state.maybeWhen(
+                  orElse: () => null,
+                  success: (image) {
+                    Share.shareXFiles(
+                      [XFile(image)],
+                      subject: 'Made with Motivator App',
+                    );
+                  },
+                );
+              },
             ),
-          );
-        }),
-      ),
+            BlocListener<SaveSoundCubit, SaveSoundState>(
+              listener: (context, state) {
+                state.maybeWhen(
+                    orElse: () => null,
+                    saveSound: (soundPathIndex) {
+                      _audioPlayer.setAsset(PainterConstatnt.musicConstant.entries.elementAt(soundPathIndex).value);
+                    });
+              },
+            ),
+            BlocListener<ToggleSoundCubit, ToggleSoundState>(
+              bloc: context.read<ToggleSoundCubit>()..toggleSound(),
+              listener: (context, state) {
+                state.maybeWhen(
+                    orElse: () {},
+                    toggle: (value) {
+                      isMuted = !value;
+                      value ? _audioPlayer.play() : _audioPlayer.pause();
+                    });
+              },
+            ),
+          ],
+          // child:
+          child: ScaffoldWrapper(
+            body: Stack(
+              children: [
+                Screenshot(
+                  controller: screenshotController,
+                  child: Stack(
+                    children: [
+                      Positioned.fill(
+                        child: backgroundElement.image == null || backgroundElement.image == ''
+                            ? const SizedBox.shrink()
+                            : Image.file(
+                                File(backgroundElement.image!),
+                                fit: BoxFit.cover,
+                              ),
+                      ),
+                      BlocBuilder<GetRandomQuotesCubit, GetRandomQuotesState>(
+                        builder: (context, state) {
+                          return state.maybeWhen(
+                            orElse: () => const SizedBox.shrink(),
+                            success: (data, _, hasMoreItems) {
+                              return PageView.builder(
+                                onPageChanged: (value) {
+                                  page = value;
+                                  if (page == data.length - 2) {
+                                    context.read<GetRandomQuotesCubit>().addMoreRandomQuotes();
+                                  }
+                                },
+                                scrollDirection: Axis.vertical,
+                                itemCount: data.length,
+                                itemBuilder: (context, index) {
+                                  return QuoteViewer(
+                                    quote: data[index],
+                                    screenshotController: screenshotController,
+                                  );
+                                },
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 20.0, left: 20),
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: BottomWidget(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      }),
     );
   }
 }
@@ -252,5 +270,23 @@ class BottomWidget extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+class MyAppLifecycleObserver extends WidgetsBindingObserver {
+  final AudioPlayer audioPlayer;
+  final void Function() onResumed;
+
+  MyAppLifecycleObserver({required this.audioPlayer, required this.onResumed});
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused || state == AppLifecycleState.inactive) {
+      // Stop the audio player when the app is paused or inactive
+      audioPlayer.stop();
+    }
+    if (state == AppLifecycleState.resumed) {
+      onResumed();
+    }
   }
 }
