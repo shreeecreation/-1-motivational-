@@ -27,14 +27,14 @@ class SnackbarWidget extends StatelessWidget {
         children: [
           Container(
             width: 10.w,
-            decoration: BoxDecoration(
-              color: bgColor,
-              borderRadius: const BorderRadius.horizontal(left: Radius.circular(10)),
+            decoration: const BoxDecoration(
+              color: AppColors.textDark,
+              borderRadius: BorderRadius.horizontal(left: Radius.circular(10)),
             ),
           ),
           Expanded(
             child: ColoredBox(
-              color: bgColor.withOpacity(.6),
+              color: AppColors.textDark.withOpacity(.9),
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 10.w),
                 child: Column(

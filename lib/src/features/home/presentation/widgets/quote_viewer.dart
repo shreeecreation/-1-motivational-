@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:motivational/src/core/repository/auth_repository.dart';
 import 'package:motivational/src/core/theme/app_styles.dart';
+import 'package:motivational/src/core/widgets/context.extension.dart';
 import 'package:motivational/src/features/auth/screens/auth_bottom_sheet.dart';
 import 'package:motivational/src/features/home/bloc/favorite_saver/favorite_saver_cubit.dart';
 import 'package:motivational/src/features/home/bloc/painter_saver/painter_saver_cubit.dart';
@@ -107,9 +109,12 @@ class QuoteViewer extends StatelessWidget {
                             12.horizontalSpace,
                             IconButton(
                               onPressed: () {
-                                AuthBottomSheet.show(context);
-                                context.read<FavoriteSaverCubit>().addToList(quote);
-                                // context.showSnackbar(title: "Success !", message: "Added to Favorites");
+                                if (AuthRepository().authRepository.isSignedIn) {
+                                  context.read<FavoriteSaverCubit>().addToList(quote);
+                                  context.showSnackbar(title: "Success !", message: "Added to Favorites");
+                                } else {
+                                  AuthBottomSheet.show(context);
+                                }
                               },
                               icon: const Icon(
                                 Icons.favorite_outline,

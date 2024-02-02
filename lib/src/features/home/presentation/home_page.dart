@@ -5,8 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:motivational/core/assets/assets.gen.dart';
-import 'package:motivational/src/core/logigng.dart';
 import 'package:motivational/src/core/routes/routes.dart';
 import 'package:motivational/src/core/theme/app_colors.dart';
 import 'package:motivational/src/core/theme/app_styles.dart';
@@ -93,8 +91,7 @@ class _HomePageState extends State<HomePage> {
                     child: Stack(
                       children: [
                         Positioned.fill(
-                          child: backgroundElement.image == null ||
-                                  backgroundElement.image == ''
+                          child: backgroundElement.image == null || backgroundElement.image == ''
                               ? const SizedBox.shrink()
                               : Image.file(
                                   File(backgroundElement.image!),
@@ -110,9 +107,7 @@ class _HomePageState extends State<HomePage> {
                                   onPageChanged: (value) {
                                     page = value;
                                     if (page == data.length - 2) {
-                                      context
-                                          .read<GetRandomQuotesCubit>()
-                                          .addMoreRandomQuotes();
+                                      context.read<GetRandomQuotesCubit>().addMoreRandomQuotes();
                                     }
                                   },
                                   scrollDirection: Axis.vertical,
@@ -120,8 +115,7 @@ class _HomePageState extends State<HomePage> {
                                   itemBuilder: (context, index) {
                                     return QuoteViewer(
                                       quote: data[index],
-                                      screenshotController:
-                                          screenshotController,
+                                      screenshotController: screenshotController,
                                     );
                                   },
                                 );
@@ -174,9 +168,7 @@ class BottomWidget extends StatelessWidget {
                     return const Icon(Icons.abc);
                   },
                   toggle: (data) {
-                    return Icon(data
-                        ? CupertinoIcons.speaker_2_fill
-                        : CupertinoIcons.speaker_slash_fill);
+                    return Icon(data ? CupertinoIcons.speaker_2_fill : CupertinoIcons.speaker_slash_fill);
                   },
                 ),
               );
@@ -244,7 +236,7 @@ class BottomWidget extends StatelessWidget {
                       width: 40,
                       child: Center(
                         child: Text(
-                          (user.data['name'] as String).substring(0, 1),
+                          (user.data['name'] as String),
                           style: AppStyles.text14PxBold.copyWith(
                             color: AppColors.white,
                           ),
