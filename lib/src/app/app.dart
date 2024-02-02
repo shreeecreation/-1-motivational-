@@ -21,7 +21,7 @@ class App extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => PainterSaverCubit()),
-        BlocProvider(create: (context) => FavoriteSaverCubit()),
+        BlocProvider(create: (context) => FavoriteSaverCubit()..getList()),
         BlocProvider(create: (context) => GetRandomQuotesCubit()),
         BlocProvider(create: (context) => SaveSoundCubit()..getSound()),
         BlocProvider(create: (context) => ImageCubit()..getImages()),

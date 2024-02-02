@@ -36,11 +36,25 @@ class $AssetsAudioGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/favorite.png
+  AssetGenImage get favorite =>
+      const AssetGenImage('assets/images/favorite.png');
+
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [logo];
+  List<AssetGenImage> get values => [favorite, logo];
+}
+
+class $AssetsLottieGen {
+  const $AssetsLottieGen();
+
+  /// File path: assets/lottie/favorite.json
+  String get favorite => 'assets/lottie/favorite.json';
+
+  /// List of all assets
+  List<String> get values => [favorite];
 }
 
 class $AssetsSvgGen {
@@ -58,6 +72,7 @@ class Assets {
 
   static const $AssetsAudioGen audio = $AssetsAudioGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsLottieGen lottie = $AssetsLottieGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
 }
 

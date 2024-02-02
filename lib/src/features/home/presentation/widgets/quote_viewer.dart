@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:motivational/core/assets/assets.gen.dart';
 import 'package:motivational/src/core/repository/auth_repository.dart';
 import 'package:motivational/src/core/theme/app_styles.dart';
 import 'package:motivational/src/core/widgets/context.extension.dart';
@@ -10,11 +11,13 @@ import 'package:motivational/src/features/home/bloc/painter_saver/painter_saver_
 import 'package:motivational/src/features/home/bloc/share/share_cubit.dart';
 import 'package:motivational/src/features/home/domain/model/quotes_model.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:lottie/lottie.dart';
 
 class QuoteViewer extends StatelessWidget {
-  const QuoteViewer({Key? key, required this.quote, required this.screenshotController}) : super(key: key);
+  QuoteViewer({Key? key, required this.quote, required this.screenshotController}) : super(key: key);
   final QuotesModel quote;
   final ScreenshotController screenshotController;
+  final ValueNotifier<bool> _isVisible = ValueNotifier<bool>(false);
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +88,14 @@ class QuoteViewer extends StatelessWidget {
                           ),
                         ],
                       ),
+                      ValueListenableBuilder<bool>(
+                        valueListenable: _isVisible,
+                        builder: (context, value, child) {
+                          return Visibility(
+                              visible: value,
+                              child: Center(child: SizedBox(height: 150, width: 150, child: Lottie.asset(Assets.lottie.favorite, repeat: false))));
+                        },
+                      )
                     ],
                   ),
                 ),
@@ -109,6 +120,11 @@ class QuoteViewer extends StatelessWidget {
                             12.horizontalSpace,
                             IconButton(
                               onPressed: () {
+                                _isVisible.value = true;
+                                Future.delayed(const Duration(milliseconds: 1500), () {
+                                  _isVisible.value = false;
+                                });
+
                                 if (AuthRepository().authRepository.isSignedIn) {
                                   context.read<FavoriteSaverCubit>().addToList(quote);
                                   context.showSnackbar(title: "Success !", message: "Added to Favorites");

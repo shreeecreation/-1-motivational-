@@ -10,7 +10,6 @@ import 'package:motivational/src/core/theme/app_colors.dart';
 import 'package:motivational/src/core/theme/app_styles.dart';
 import 'package:motivational/src/core/widgets/custom_button.dart';
 import 'package:motivational/src/core/widgets/scaffold_wrapper.dart';
-import 'package:motivational/src/features/auth/screens/blocs/user/user_cubit.dart';
 import 'package:motivational/src/features/home/bloc/get_random/get_random_quotes_cubit.dart';
 import 'package:motivational/src/features/home/bloc/painter_saver/painter_saver_cubit.dart';
 import 'package:motivational/src/features/home/bloc/share/share_cubit.dart';
@@ -90,7 +89,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               },
             ),
             BlocListener<ToggleSoundCubit, ToggleSoundState>(
-              bloc: context.read<ToggleSoundCubit>()..toggleSound(),
+              // bloc: context.read<ToggleSoundCubit>()..toggleSound(),
               listener: (context, state) {
                 state.maybeWhen(
                     orElse: () {},
@@ -218,53 +217,55 @@ class BottomWidget extends StatelessWidget {
                 color: AppColors.statusRed,
               ),
               child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(AppRoutes.favoritePage);
+                },
                 icon: const Icon(
                   Icons.favorite,
                 ),
               ),
             ),
             15.horizontalSpace,
-            BlocConsumer<UserCubit, UserState>(
-              listener: (context, state) {
-                state.maybeWhen(
-                  orElse: () => null,
-                  success: (user) {
-                    Get.showSnackbar(GetSnackBar(
-                      message: 'Welcome ${user.data['name']}',
-                      snackPosition: SnackPosition.TOP,
-                      margin: const EdgeInsets.all(20),
-                      duration: const Duration(seconds: 2),
-                    ));
-                  },
-                );
-              },
-              builder: (context, state) {
-                return state.maybeWhen(
-                  orElse: SizedBox.shrink,
-                  success: (user) {
-                    return Container(
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        color: AppColors.black,
-                      ),
-                      height: 40,
-                      width: 40,
-                      child: Center(
-                        child: Text(
-                          (user.data['name'] as String),
-                          style: AppStyles.text14PxBold.copyWith(
-                            color: AppColors.white,
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
+            // BlocConsumer<UserCubit, UserState>(
+            //   listener: (context, state) {
+            //     state.maybeWhen(
+            //       orElse: () => null,
+            //       success: (user) {
+            //         Get.showSnackbar(GetSnackBar(
+            //           message: 'Welcome ${user.data['name']}',
+            //           snackPosition: SnackPosition.TOP,
+            //           margin: const EdgeInsets.all(20),
+            //           duration: const Duration(seconds: 2),
+            //         ));
+            //       },
+            //     );
+            //   },
+            //   builder: (context, state) {
+            //     return state.maybeWhen(
+            //       orElse: SizedBox.shrink,
+            //       success: (user) {
+            //         return Container(
+            //           decoration: const BoxDecoration(
+            //             borderRadius: BorderRadius.all(
+            //               Radius.circular(10),
+            //             ),
+            //             color: AppColors.black,
+            //           ),
+            //           height: 40,
+            //           width: 40,
+            //           child: Center(
+            //             child: Text(
+            //               (user.data['name'] as String),
+            //               style: AppStyles.text14PxBold.copyWith(
+            //                 color: AppColors.white,
+            //               ),
+            //             ),
+            //           ),
+            //         );
+            //       },
+            //     );
+            //   },
+            // ),
             15.horizontalSpace,
           ],
         ),

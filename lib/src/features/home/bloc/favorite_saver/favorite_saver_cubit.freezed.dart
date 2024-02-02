@@ -20,7 +20,8 @@ mixin _$FavoriteSaverState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<QuotesModel> quotesModel) success,
+    required TResult Function() saveList,
+    required TResult Function(List<QuotesModel> quotesModel) getList,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +29,8 @@ mixin _$FavoriteSaverState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<QuotesModel> quotesModel)? success,
+    TResult? Function()? saveList,
+    TResult? Function(List<QuotesModel> quotesModel)? getList,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +38,8 @@ mixin _$FavoriteSaverState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<QuotesModel> quotesModel)? success,
+    TResult Function()? saveList,
+    TResult Function(List<QuotesModel> quotesModel)? getList,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -45,7 +48,8 @@ mixin _$FavoriteSaverState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_SaveList value) saveList,
+    required TResult Function(_GetList value) getList,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -53,7 +57,8 @@ mixin _$FavoriteSaverState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_SaveList value)? saveList,
+    TResult? Function(_GetList value)? getList,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +66,8 @@ mixin _$FavoriteSaverState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_SaveList value)? saveList,
+    TResult Function(_GetList value)? getList,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -126,7 +132,8 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<QuotesModel> quotesModel) success,
+    required TResult Function() saveList,
+    required TResult Function(List<QuotesModel> quotesModel) getList,
     required TResult Function() error,
   }) {
     return initial();
@@ -137,7 +144,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<QuotesModel> quotesModel)? success,
+    TResult? Function()? saveList,
+    TResult? Function(List<QuotesModel> quotesModel)? getList,
     TResult? Function()? error,
   }) {
     return initial?.call();
@@ -148,7 +156,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<QuotesModel> quotesModel)? success,
+    TResult Function()? saveList,
+    TResult Function(List<QuotesModel> quotesModel)? getList,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -163,7 +172,8 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_SaveList value) saveList,
+    required TResult Function(_GetList value) getList,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -174,7 +184,8 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_SaveList value)? saveList,
+    TResult? Function(_GetList value)? getList,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -185,7 +196,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_SaveList value)? saveList,
+    TResult Function(_GetList value)? getList,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -240,7 +252,8 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<QuotesModel> quotesModel) success,
+    required TResult Function() saveList,
+    required TResult Function(List<QuotesModel> quotesModel) getList,
     required TResult Function() error,
   }) {
     return loading();
@@ -251,7 +264,8 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<QuotesModel> quotesModel)? success,
+    TResult? Function()? saveList,
+    TResult? Function(List<QuotesModel> quotesModel)? getList,
     TResult? Function()? error,
   }) {
     return loading?.call();
@@ -262,7 +276,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<QuotesModel> quotesModel)? success,
+    TResult Function()? saveList,
+    TResult Function(List<QuotesModel> quotesModel)? getList,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -277,7 +292,8 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_SaveList value) saveList,
+    required TResult Function(_GetList value) getList,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -288,7 +304,8 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_SaveList value)? saveList,
+    TResult? Function(_GetList value)? getList,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -299,7 +316,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_SaveList value)? saveList,
+    TResult Function(_GetList value)? getList,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -315,20 +333,140 @@ abstract class _Loading implements FavoriteSaverState {
 }
 
 /// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
-      __$$SuccessImplCopyWithImpl<$Res>;
+abstract class _$$SaveListImplCopyWith<$Res> {
+  factory _$$SaveListImplCopyWith(
+          _$SaveListImpl value, $Res Function(_$SaveListImpl) then) =
+      __$$SaveListImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SaveListImplCopyWithImpl<$Res>
+    extends _$FavoriteSaverStateCopyWithImpl<$Res, _$SaveListImpl>
+    implements _$$SaveListImplCopyWith<$Res> {
+  __$$SaveListImplCopyWithImpl(
+      _$SaveListImpl _value, $Res Function(_$SaveListImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SaveListImpl implements _SaveList {
+  const _$SaveListImpl();
+
+  @override
+  String toString() {
+    return 'FavoriteSaverState.saveList()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SaveListImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() saveList,
+    required TResult Function(List<QuotesModel> quotesModel) getList,
+    required TResult Function() error,
+  }) {
+    return saveList();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? saveList,
+    TResult? Function(List<QuotesModel> quotesModel)? getList,
+    TResult? Function()? error,
+  }) {
+    return saveList?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? saveList,
+    TResult Function(List<QuotesModel> quotesModel)? getList,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (saveList != null) {
+      return saveList();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_SaveList value) saveList,
+    required TResult Function(_GetList value) getList,
+    required TResult Function(_Error value) error,
+  }) {
+    return saveList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_SaveList value)? saveList,
+    TResult? Function(_GetList value)? getList,
+    TResult? Function(_Error value)? error,
+  }) {
+    return saveList?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_SaveList value)? saveList,
+    TResult Function(_GetList value)? getList,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (saveList != null) {
+      return saveList(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SaveList implements FavoriteSaverState {
+  const factory _SaveList() = _$SaveListImpl;
+}
+
+/// @nodoc
+abstract class _$$GetListImplCopyWith<$Res> {
+  factory _$$GetListImplCopyWith(
+          _$GetListImpl value, $Res Function(_$GetListImpl) then) =
+      __$$GetListImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<QuotesModel> quotesModel});
 }
 
 /// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$FavoriteSaverStateCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
+class __$$GetListImplCopyWithImpl<$Res>
+    extends _$FavoriteSaverStateCopyWithImpl<$Res, _$GetListImpl>
+    implements _$$GetListImplCopyWith<$Res> {
+  __$$GetListImplCopyWithImpl(
+      _$GetListImpl _value, $Res Function(_$GetListImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -336,7 +474,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? quotesModel = null,
   }) {
-    return _then(_$SuccessImpl(
+    return _then(_$GetListImpl(
       quotesModel: null == quotesModel
           ? _value._quotesModel
           : quotesModel // ignore: cast_nullable_to_non_nullable
@@ -347,8 +485,8 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SuccessImpl implements _Success {
-  const _$SuccessImpl({final List<QuotesModel> quotesModel = const []})
+class _$GetListImpl implements _GetList {
+  const _$GetListImpl({final List<QuotesModel> quotesModel = const []})
       : _quotesModel = quotesModel;
 
   final List<QuotesModel> _quotesModel;
@@ -362,14 +500,14 @@ class _$SuccessImpl implements _Success {
 
   @override
   String toString() {
-    return 'FavoriteSaverState.success(quotesModel: $quotesModel)';
+    return 'FavoriteSaverState.getList(quotesModel: $quotesModel)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SuccessImpl &&
+            other is _$GetListImpl &&
             const DeepCollectionEquality()
                 .equals(other._quotesModel, _quotesModel));
   }
@@ -381,18 +519,19 @@ class _$SuccessImpl implements _Success {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
+  _$$GetListImplCopyWith<_$GetListImpl> get copyWith =>
+      __$$GetListImplCopyWithImpl<_$GetListImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<QuotesModel> quotesModel) success,
+    required TResult Function() saveList,
+    required TResult Function(List<QuotesModel> quotesModel) getList,
     required TResult Function() error,
   }) {
-    return success(quotesModel);
+    return getList(quotesModel);
   }
 
   @override
@@ -400,10 +539,11 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<QuotesModel> quotesModel)? success,
+    TResult? Function()? saveList,
+    TResult? Function(List<QuotesModel> quotesModel)? getList,
     TResult? Function()? error,
   }) {
-    return success?.call(quotesModel);
+    return getList?.call(quotesModel);
   }
 
   @override
@@ -411,12 +551,13 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<QuotesModel> quotesModel)? success,
+    TResult Function()? saveList,
+    TResult Function(List<QuotesModel> quotesModel)? getList,
     TResult Function()? error,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(quotesModel);
+    if (getList != null) {
+      return getList(quotesModel);
     }
     return orElse();
   }
@@ -426,10 +567,11 @@ class _$SuccessImpl implements _Success {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_SaveList value) saveList,
+    required TResult Function(_GetList value) getList,
     required TResult Function(_Error value) error,
   }) {
-    return success(this);
+    return getList(this);
   }
 
   @override
@@ -437,10 +579,11 @@ class _$SuccessImpl implements _Success {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_SaveList value)? saveList,
+    TResult? Function(_GetList value)? getList,
     TResult? Function(_Error value)? error,
   }) {
-    return success?.call(this);
+    return getList?.call(this);
   }
 
   @override
@@ -448,23 +591,24 @@ class _$SuccessImpl implements _Success {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_SaveList value)? saveList,
+    TResult Function(_GetList value)? getList,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(this);
+    if (getList != null) {
+      return getList(this);
     }
     return orElse();
   }
 }
 
-abstract class _Success implements FavoriteSaverState {
-  const factory _Success({final List<QuotesModel> quotesModel}) = _$SuccessImpl;
+abstract class _GetList implements FavoriteSaverState {
+  const factory _GetList({final List<QuotesModel> quotesModel}) = _$GetListImpl;
 
   List<QuotesModel> get quotesModel;
   @JsonKey(ignore: true)
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+  _$$GetListImplCopyWith<_$GetListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -508,7 +652,8 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<QuotesModel> quotesModel) success,
+    required TResult Function() saveList,
+    required TResult Function(List<QuotesModel> quotesModel) getList,
     required TResult Function() error,
   }) {
     return error();
@@ -519,7 +664,8 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<QuotesModel> quotesModel)? success,
+    TResult? Function()? saveList,
+    TResult? Function(List<QuotesModel> quotesModel)? getList,
     TResult? Function()? error,
   }) {
     return error?.call();
@@ -530,7 +676,8 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<QuotesModel> quotesModel)? success,
+    TResult Function()? saveList,
+    TResult Function(List<QuotesModel> quotesModel)? getList,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -545,7 +692,8 @@ class _$ErrorImpl implements _Error {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_SaveList value) saveList,
+    required TResult Function(_GetList value) getList,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -556,7 +704,8 @@ class _$ErrorImpl implements _Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_SaveList value)? saveList,
+    TResult? Function(_GetList value)? getList,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -567,7 +716,8 @@ class _$ErrorImpl implements _Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_SaveList value)? saveList,
+    TResult Function(_GetList value)? getList,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
