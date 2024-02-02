@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:get/route_manager.dart';
@@ -15,8 +16,7 @@ final class AuthRepository {
 
   Future<RecordAuth> signInWithGoogle() async {
     try {
-      final response =
-          await pb.client.collection('users').authWithOAuth2('google', (url) {
+      final response = await pb.client.collection('users').authWithOAuth2('google', (url) {
         Get.to(() => AppWebViewer(url: url));
       }, scopes: [
         'profile',
@@ -34,8 +34,7 @@ final class AuthRepository {
 
   Future<RecordAuth> signInWithFacebook() async {
     try {
-      final response =
-          await pb.client.collection('users').authWithOAuth2('facebook', (url) {
+      final response = await pb.client.collection('users').authWithOAuth2('facebook', (url) {
         Get.to(() => AppWebViewer(url: url));
       });
 
@@ -43,7 +42,9 @@ final class AuthRepository {
 
       return response;
     } on ClientException catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       rethrow;
     }
   }
@@ -52,8 +53,7 @@ final class AuthRepository {
     if (!response.meta['isNew']) {
       return;
     }
-    final avatar =
-        await AppCacheManager.manager.getSingleFile(response.meta['avatarUrl']);
+    final avatar = await AppCacheManager.manager.getSingleFile(response.meta['avatarUrl']);
 
     await pb.client.collection('users').update(response.record!.id, body: {
       'name': response.meta['name'],
@@ -69,8 +69,7 @@ final class AuthRepository {
   // apple
   Future<RecordAuth> signInWithApple() async {
     try {
-      final response =
-          await pb.client.collection('users').authWithOAuth2('apple', (url) {
+      final response = await pb.client.collection('users').authWithOAuth2('apple', (url) {
         Get.to(() => AppWebViewer(url: url));
       });
 

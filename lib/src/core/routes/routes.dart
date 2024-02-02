@@ -13,7 +13,7 @@ class AppRoutes {
   static const String favoritePage = '/favoritePage';
 
   static List<GetPage> routes = [
-    GetPage(name: splash, page: () => const SplashPage()),
+    GetPage(name: splash, page: () => const SplashPage(), transition: Transition.fadeIn),
     GetPage(name: homePage, page: () => const HomePage(), transition: transitionType, transitionDuration: transitionDuration),
     GetPage(name: paintPage, page: () => const PainterPage(), transition: transitionType, transitionDuration: transitionDuration),
     GetPage(name: favoritePage, page: () => const FavoritePage(), transition: transitionType, transitionDuration: transitionDuration),

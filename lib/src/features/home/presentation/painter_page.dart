@@ -75,14 +75,17 @@ class PainterPage extends StatelessWidget {
                       },
                       child: Card(
                         elevation: 0.8,
-                        // color: PainterConstatnt.painterConstant[index],
+                        // color: ,
                         child: SizedBox(
                           height: 100,
-                          width: 100,
+                          width: 110,
                           child: Center(
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text(PainterConstatnt.musicConstant.keys.elementAt(index)),
+                              child: Text(
+                                PainterConstatnt.musicConstant.keys.elementAt(index),
+                                style: AppStyles.text11PxMedium,
+                              ),
                             ),
                           ),
                         ),

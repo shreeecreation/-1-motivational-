@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/route_manager.dart';
-import 'package:motivational/src/features/auth/screens/blocs/auth/auth_cubit.dart';
-
 import '../theme/app_colors.dart';
 
 class AppWebViewer extends StatefulWidget {
@@ -100,7 +97,7 @@ class _AppWebViewerState extends State<AppWebViewer> {
           shouldOverrideUrlLoading: (controller, navigationAction) async {
             final url = navigationAction.request.url.toString();
             final uri = Uri.parse(url);
-            print(uri.data);
+            // print(uri.data);
             // auth/oauth2-redirect-success
 
             if (uri.pathSegments.contains('oauth2-redirect-success')) {

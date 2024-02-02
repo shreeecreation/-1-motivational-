@@ -10,7 +10,6 @@ class SaveSoundCubit extends Cubit<SaveSoundState> {
   SaveSoundCubit() : super(const SaveSoundState.initial());
 
   void saveSound(int soundPathIndex) async {
-    final _state = state as _SaveSound;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setInt('sound', soundPathIndex);
     logger.info('Sound saved: ${soundPathIndex.toString()}');

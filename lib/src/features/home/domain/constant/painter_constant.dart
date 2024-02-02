@@ -17,10 +17,10 @@ class PainterConstatnt {
   ];
 
   static Map<String, dynamic> musicConstant = {
-    "Music 1": Assets.audio.audio1,
-    "Music 2": Assets.audio.audio2,
-    "Music 3": Assets.audio.audio3,
-    "Music 4": Assets.audio.audio4,
-    "Music 5": Assets.audio.audio5,
+    "Eternal": Assets.audio.audio1,
+    "Unchartered": Assets.audio.audio2,
+    "Limitless": Assets.audio.audio3,
+    "Rise": Assets.audio.audio4,
+    "Uplift": Assets.audio.audio5,
   };
 }

@@ -64,6 +64,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     return BlocProvider(
       create: (context) => ShareCubit(),
       child: Builder(builder: (context) {
+        context.read<ToggleSoundCubit>().toggleSound();
         return MultiBlocListener(
           listeners: [
             BlocListener<ShareCubit, ShareState>(
@@ -120,6 +121,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                         builder: (context, state) {
                           return state.maybeWhen(
                             orElse: () => const SizedBox.shrink(),
+                            loading: () {
+                              return Center(child: CircularProgressIndicator());
+                            },
                             success: (data, _, hasMoreItems) {
                               return PageView.builder(
                                 onPageChanged: (value) {

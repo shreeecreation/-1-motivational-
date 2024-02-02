@@ -24,6 +24,11 @@ class FavoritePage extends StatelessWidget {
             const SliverAppBar(
               title: Text("Favorites"),
             ),
+            SliverToBoxAdapter(
+              child: Container(
+                height: 20,
+              ),
+            ),
             BlocBuilder<FavoriteSaverCubit, FavoriteSaverState>(
               builder: (context, state) {
                 return state.maybeWhen(
@@ -39,7 +44,7 @@ class FavoritePage extends StatelessWidget {
                           height: context.height,
                           child: Column(
                             children: [
-                              Container(
+                              SizedBox(
                                   child: AppCacheImageViewer(
                                 imageUrl: Assets.images.favorite.path,
                                 imageTypeEnum: ImageTypeEnum.assets,
