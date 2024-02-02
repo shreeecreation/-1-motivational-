@@ -88,14 +88,17 @@ class QuoteViewer extends StatelessWidget {
                           ),
                         ],
                       ),
-                      ValueListenableBuilder<bool>(
-                        valueListenable: _isVisible,
-                        builder: (context, value, child) {
-                          return Visibility(
-                              visible: value,
-                              child: Center(child: SizedBox(height: 150, width: 150, child: Lottie.asset(Assets.lottie.favorite, repeat: false))));
-                        },
-                      )
+                      AuthRepository().authRepository.isSignedIn
+                          ? ValueListenableBuilder<bool>(
+                              valueListenable: _isVisible,
+                              builder: (context, value, child) {
+                                return Visibility(
+                                    visible: value,
+                                    child:
+                                        Center(child: SizedBox(height: 150, width: 150, child: Lottie.asset(Assets.lottie.favorite, repeat: false))));
+                              },
+                            )
+                          : SizedBox.shrink(),
                     ],
                   ),
                 ),

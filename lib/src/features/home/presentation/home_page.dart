@@ -122,7 +122,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                           return state.maybeWhen(
                             orElse: () => const SizedBox.shrink(),
                             loading: () {
-                              return Center(child: CircularProgressIndicator());
+                              return const Center(child: CircularProgressIndicator());
                             },
                             success: (data, _, hasMoreItems) {
                               return PageView.builder(
