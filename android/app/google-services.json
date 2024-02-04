@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "398149048158",
+    "project_id": "motivator-53ae0",
+    "storage_bucket": "motivator-53ae0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398149048158:android:46e198945dd518214ae1cf",
+        "android_client_info": {
+          "package_name": "com.example.motivational"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChD_87JVOgazvnhvp7u-4bjT3mDkohk6Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

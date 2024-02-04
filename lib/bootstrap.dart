@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
+import 'package:motivational/firebase_options.dart';
 import 'package:motivational/src/core/clients/pocket_base_client.dart';
 import 'package:motivational/src/core/logigng.dart';
+import 'package:motivational/src/core/service/notification_service.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -34,6 +37,10 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   Bloc.observer = AppBlocObserver();
 
   Bloc.observer = AppBlocObserver();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await NotificationService().initNotifications();
   runApp(await builder());
 }
 
