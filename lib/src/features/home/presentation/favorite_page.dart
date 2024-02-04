@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:motivational/core/assets/assets.gen.dart';
+import 'package:motivational/src/core/repository/auth_repository.dart';
 import 'package:motivational/src/core/theme/app_colors.dart';
 import 'package:motivational/src/core/theme/app_styles.dart';
 import 'package:motivational/src/core/theme/typography.dart';
@@ -33,9 +34,36 @@ class FavoritePage extends StatelessWidget {
               builder: (context, state) {
                 return state.maybeWhen(
                   orElse: () {
-                    return SliverToBoxAdapter(
-                      child: Container(),
-                    );
+                    return AuthRepository().authRepository.isSignedIn
+                        ? SliverToBoxAdapter(
+                            child: SizedBox(
+                              height: context.height,
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                      child: AppCacheImageViewer(
+                                    imageUrl: Assets.images.favorite.path,
+                                    imageTypeEnum: ImageTypeEnum.assets,
+                                  )),
+                                  20.verticalSpace,
+                                  Text(
+                                    "No favorites found !",
+                                    style: AppStyles.text20Px.textGrey,
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                        : SliverToBoxAdapter(
+                            child: SizedBox(
+                              height: context.height / 2,
+                              child: Center(
+                                  child: Text(
+                                "Please sign up to use this feature",
+                                style: AppStyles.text12Px,
+                              )),
+                            ),
+                          );
                   },
                   getList: (quotesModel) {
                     if (quotesModel.isEmpty) {

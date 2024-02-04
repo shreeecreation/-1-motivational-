@@ -1,8 +1,5 @@
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:get/get.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:motivational/src/core/base/internet_checker.dart';
 import 'package:motivational/src/core/clients/pocket_base_client.dart';
 import 'package:motivational/src/features/home/domain/model/quotes_model.dart';
@@ -43,7 +40,7 @@ class GetRandomQuotesCubit extends Cubit<GetRandomQuotesState> {
         emit(const GetRandomQuotesState.error());
       }
     } else {
-      emit((GetRandomQuotesState.noInternet()));
+      emit((const GetRandomQuotesState.noInternet()));
     }
   }
 
@@ -73,7 +70,7 @@ class GetRandomQuotesCubit extends Cubit<GetRandomQuotesState> {
         emit(GetRandomQuotesState.error(error: e.toString()));
       }
     } else {
-      emit(GetRandomQuotesState.noInternet());
+      emit(const GetRandomQuotesState.noInternet());
     }
   }
 }

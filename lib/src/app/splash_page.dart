@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/route_manager.dart';
 import 'package:motivational/core/assets/assets.gen.dart';
@@ -48,8 +47,8 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
           child: ScaleTransition(
             scale: _scaleAnimation,
             child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-              child: Container(
+              borderRadius: const BorderRadius.all(Radius.circular(12)),
+              child: SizedBox(
                   height: 120,
                   width: 120,
                   // decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.fill, image: SvgPicture.asset(Assets.svg.logo.path))),

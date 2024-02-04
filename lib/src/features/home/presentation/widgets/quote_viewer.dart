@@ -98,7 +98,7 @@ class QuoteViewer extends StatelessWidget {
                                         Center(child: SizedBox(height: 150, width: 150, child: Lottie.asset(Assets.lottie.favorite, repeat: false))));
                               },
                             )
-                          : SizedBox.shrink(),
+                          : const SizedBox.shrink(),
                     ],
                   ),
                 ),

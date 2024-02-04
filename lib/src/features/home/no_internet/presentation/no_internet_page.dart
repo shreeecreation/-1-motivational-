@@ -36,7 +36,6 @@ class NoInternetPage extends StatelessWidget {
                   textColor: AppColors.white,
                   backgroundColor: AppColors.textBlue,
                   onPressed: () {
-                    print("object");
                     Get.offNamed(AppRoutes.homePage);
                   }),
             )
