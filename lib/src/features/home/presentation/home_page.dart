@@ -16,6 +16,7 @@ import 'package:motivational/src/features/home/bloc/share/share_cubit.dart';
 import 'package:motivational/src/features/home/bloc/sound_controller/save_sound_cubit.dart';
 import 'package:motivational/src/features/home/bloc/sound_controller/toggle_sound_cubit.dart';
 import 'package:motivational/src/features/home/domain/constant/painter_constant.dart';
+import 'package:motivational/src/features/home/no_internet/presentation/no_internet_page.dart';
 import 'package:motivational/src/features/home/presentation/widgets/quote_viewer.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
@@ -123,6 +124,12 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                             orElse: () => const SizedBox.shrink(),
                             loading: () {
                               return const Center(child: CircularProgressIndicator());
+                            },
+                            noInternet: () {
+                              Future.delayed(const Duration(milliseconds: 500), () async {
+                                Get.offNamed(AppRoutes.noInternet);
+                              });
+                              return const SizedBox.shrink();
                             },
                             success: (data, _, hasMoreItems) {
                               return PageView.builder(

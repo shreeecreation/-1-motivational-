@@ -23,6 +23,7 @@ mixin _$GetRandomQuotesState {
     required TResult Function(
             List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)
         success,
+    required TResult Function() noInternet,
     required TResult Function(String? error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -33,6 +34,7 @@ mixin _$GetRandomQuotesState {
     TResult? Function(
             List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
         success,
+    TResult? Function()? noInternet,
     TResult? Function(String? error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +45,7 @@ mixin _$GetRandomQuotesState {
     TResult Function(
             List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
         success,
+    TResult Function()? noInternet,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) =>
@@ -52,6 +55,7 @@ mixin _$GetRandomQuotesState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -60,6 +64,7 @@ mixin _$GetRandomQuotesState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_NoInternet value)? noInternet,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +73,7 @@ mixin _$GetRandomQuotesState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_NoInternet value)? noInternet,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -136,6 +142,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(
             List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)
         success,
+    required TResult Function() noInternet,
     required TResult Function(String? error) error,
   }) {
     return initial();
@@ -149,6 +156,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(
             List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
         success,
+    TResult? Function()? noInternet,
     TResult? Function(String? error)? error,
   }) {
     return initial?.call();
@@ -162,6 +170,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(
             List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
         success,
+    TResult Function()? noInternet,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {
@@ -177,6 +186,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -188,6 +198,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_NoInternet value)? noInternet,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -199,6 +210,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_NoInternet value)? noInternet,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -256,6 +268,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(
             List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)
         success,
+    required TResult Function() noInternet,
     required TResult Function(String? error) error,
   }) {
     return loading();
@@ -269,6 +282,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(
             List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
         success,
+    TResult? Function()? noInternet,
     TResult? Function(String? error)? error,
   }) {
     return loading?.call();
@@ -282,6 +296,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(
             List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
         success,
+    TResult Function()? noInternet,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {
@@ -297,6 +312,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -308,6 +324,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_NoInternet value)? noInternet,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -319,6 +336,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_NoInternet value)? noInternet,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -434,6 +452,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(
             List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)
         success,
+    required TResult Function() noInternet,
     required TResult Function(String? error) error,
   }) {
     return success(posts, isLoadingMore, hasMoreItems);
@@ -447,6 +466,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(
             List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
         success,
+    TResult? Function()? noInternet,
     TResult? Function(String? error)? error,
   }) {
     return success?.call(posts, isLoadingMore, hasMoreItems);
@@ -460,6 +480,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(
             List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
         success,
+    TResult Function()? noInternet,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {
@@ -475,6 +496,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_Error value) error,
   }) {
     return success(this);
@@ -486,6 +508,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_NoInternet value)? noInternet,
     TResult? Function(_Error value)? error,
   }) {
     return success?.call(this);
@@ -497,6 +520,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_NoInternet value)? noInternet,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -519,6 +543,132 @@ abstract class _Success implements GetRandomQuotesState {
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$NoInternetImplCopyWith<$Res> {
+  factory _$$NoInternetImplCopyWith(
+          _$NoInternetImpl value, $Res Function(_$NoInternetImpl) then) =
+      __$$NoInternetImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$NoInternetImplCopyWithImpl<$Res>
+    extends _$GetRandomQuotesStateCopyWithImpl<$Res, _$NoInternetImpl>
+    implements _$$NoInternetImplCopyWith<$Res> {
+  __$$NoInternetImplCopyWithImpl(
+      _$NoInternetImpl _value, $Res Function(_$NoInternetImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$NoInternetImpl implements _NoInternet {
+  const _$NoInternetImpl();
+
+  @override
+  String toString() {
+    return 'GetRandomQuotesState.noInternet()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$NoInternetImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(
+            List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)
+        success,
+    required TResult Function() noInternet,
+    required TResult Function(String? error) error,
+  }) {
+    return noInternet();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(
+            List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
+        success,
+    TResult? Function()? noInternet,
+    TResult? Function(String? error)? error,
+  }) {
+    return noInternet?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(
+            List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
+        success,
+    TResult Function()? noInternet,
+    TResult Function(String? error)? error,
+    required TResult orElse(),
+  }) {
+    if (noInternet != null) {
+      return noInternet();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_NoInternet value) noInternet,
+    required TResult Function(_Error value) error,
+  }) {
+    return noInternet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_NoInternet value)? noInternet,
+    TResult? Function(_Error value)? error,
+  }) {
+    return noInternet?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (noInternet != null) {
+      return noInternet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NoInternet implements GetRandomQuotesState {
+  const factory _NoInternet() = _$NoInternetImpl;
 }
 
 /// @nodoc
@@ -590,6 +740,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(
             List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)
         success,
+    required TResult Function() noInternet,
     required TResult Function(String? error) error,
   }) {
     return error(this.error);
@@ -603,6 +754,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(
             List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
         success,
+    TResult? Function()? noInternet,
     TResult? Function(String? error)? error,
   }) {
     return error?.call(this.error);
@@ -616,6 +768,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(
             List<QuotesModel> posts, bool isLoadingMore, bool hasMoreItems)?
         success,
+    TResult Function()? noInternet,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {
@@ -631,6 +784,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -642,6 +796,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_NoInternet value)? noInternet,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -653,6 +808,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_NoInternet value)? noInternet,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

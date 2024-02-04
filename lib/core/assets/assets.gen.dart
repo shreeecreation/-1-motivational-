@@ -53,8 +53,11 @@ class $AssetsLottieGen {
   /// File path: assets/lottie/favorite.json
   String get favorite => 'assets/lottie/favorite.json';
 
+  /// File path: assets/lottie/nointernet.json
+  String get nointernet => 'assets/lottie/nointernet.json';
+
   /// List of all assets
-  List<String> get values => [favorite];
+  List<String> get values => [favorite, nointernet];
 }
 
 class $AssetsSvgGen {

@@ -35,7 +35,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
       _controller.forward();
     });
     Future.delayed(const Duration(seconds: 2), () {
-      Get.toNamed(AppRoutes.homePage);
+      Get.offAllNamed(AppRoutes.homePage);
     });
   }
 
