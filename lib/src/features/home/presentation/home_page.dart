@@ -16,7 +16,6 @@ import 'package:motivational/src/features/home/bloc/share/share_cubit.dart';
 import 'package:motivational/src/features/home/bloc/sound_controller/save_sound_cubit.dart';
 import 'package:motivational/src/features/home/bloc/sound_controller/toggle_sound_cubit.dart';
 import 'package:motivational/src/features/home/domain/constant/painter_constant.dart';
-import 'package:motivational/src/features/home/no_internet/presentation/no_internet_page.dart';
 import 'package:motivational/src/features/home/presentation/widgets/quote_viewer.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
@@ -37,6 +36,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     _audioPlayer = AudioPlayer()..setLoopMode(LoopMode.all);
+
     WidgetsBinding.instance.addObserver(MyAppLifecycleObserver(
         audioPlayer: _audioPlayer,
         onResumed: () {
@@ -62,111 +62,113 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     final backgroundElement = context.watch<PainterSaverCubit>().state;
 
-    return BlocProvider(
-      create: (context) => ShareCubit(),
-      child: Builder(builder: (context) {
-        context.read<ToggleSoundCubit>().toggleSound();
-        return MultiBlocListener(
-          listeners: [
-            BlocListener<ShareCubit, ShareState>(
-              listener: (context, state) {
-                state.maybeWhen(
-                  orElse: () => null,
-                  success: (image) {
-                    Share.shareXFiles(
-                      [XFile(image)],
-                      subject: 'Made with Motivator App',
-                    );
-                  },
-                );
-              },
-            ),
-            BlocListener<SaveSoundCubit, SaveSoundState>(
-              listener: (context, state) {
-                state.maybeWhen(
+    return BlocProvider.value(
+      value: context.read<ToggleSoundCubit>()..toggleSound(),
+      child: BlocProvider(
+        create: (context) => ShareCubit(),
+        child: Builder(builder: (context) {
+          return MultiBlocListener(
+            listeners: [
+              BlocListener<ShareCubit, ShareState>(
+                listener: (context, state) {
+                  state.maybeWhen(
                     orElse: () => null,
-                    saveSound: (soundPathIndex) {
-                      _audioPlayer.setAsset(PainterConstatnt.musicConstant.entries.elementAt(soundPathIndex).value);
-                    });
-              },
-            ),
-            BlocListener<ToggleSoundCubit, ToggleSoundState>(
-              // bloc: context.read<ToggleSoundCubit>()..toggleSound(),
-              listener: (context, state) {
-                state.maybeWhen(
-                    orElse: () {},
-                    toggle: (value) {
-                      isMuted = !value;
-                      value ? _audioPlayer.play() : _audioPlayer.pause();
-                    });
-              },
-            ),
-          ],
-          // child:
-          child: ScaffoldWrapper(
-            body: Stack(
-              children: [
-                Screenshot(
-                  controller: screenshotController,
-                  child: Stack(
-                    children: [
-                      Positioned.fill(
-                        child: backgroundElement.image == null || backgroundElement.image == ''
-                            ? const SizedBox.shrink()
-                            : Image.file(
-                                File(backgroundElement.image!),
-                                fit: BoxFit.cover,
-                              ),
-                      ),
-                      BlocBuilder<GetRandomQuotesCubit, GetRandomQuotesState>(
-                        builder: (context, state) {
-                          return state.maybeWhen(
-                            orElse: () => const SizedBox.shrink(),
-                            loading: () {
-                              return const Center(child: CircularProgressIndicator());
-                            },
-                            noInternet: () {
-                              Future.delayed(const Duration(milliseconds: 500), () async {
-                                Get.offNamed(AppRoutes.noInternet);
-                              });
-                              return const SizedBox.shrink();
-                            },
-                            success: (data, _, hasMoreItems) {
-                              return PageView.builder(
-                                onPageChanged: (value) {
-                                  page = value;
-                                  if (page == data.length - 2) {
-                                    context.read<GetRandomQuotesCubit>().addMoreRandomQuotes();
-                                  }
-                                },
-                                scrollDirection: Axis.vertical,
-                                itemCount: data.length,
-                                itemBuilder: (context, index) {
-                                  return QuoteViewer(
-                                    quote: data[index],
-                                    screenshotController: screenshotController,
-                                  );
-                                },
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    ],
+                    success: (image) {
+                      Share.shareXFiles(
+                        [XFile(image)],
+                        subject: 'Made with Motivator App',
+                      );
+                    },
+                  );
+                },
+              ),
+              BlocListener<SaveSoundCubit, SaveSoundState>(
+                listener: (context, state) {
+                  state.maybeWhen(
+                      orElse: () => null,
+                      saveSound: (soundPathIndex) {
+                        _audioPlayer.setAsset(PainterConstatnt.musicConstant.entries.elementAt(soundPathIndex).value);
+                      });
+                },
+              ),
+              BlocListener<ToggleSoundCubit, ToggleSoundState>(
+                // bloc: context.read<ToggleSoundCubit>()..toggleSound(),
+                listener: (context, state) {
+                  state.maybeWhen(
+                      orElse: () {},
+                      toggle: (value) {
+                        isMuted = !value;
+                        value ? _audioPlayer.play() : _audioPlayer.pause();
+                      });
+                },
+              ),
+            ],
+            // child:
+            child: ScaffoldWrapper(
+              body: Stack(
+                children: [
+                  Screenshot(
+                    controller: screenshotController,
+                    child: Stack(
+                      children: [
+                        Positioned.fill(
+                          child: backgroundElement.image == null || backgroundElement.image == ''
+                              ? const SizedBox.shrink()
+                              : Image.file(
+                                  File(backgroundElement.image!),
+                                  fit: BoxFit.cover,
+                                ),
+                        ),
+                        BlocBuilder<GetRandomQuotesCubit, GetRandomQuotesState>(
+                          builder: (context, state) {
+                            return state.maybeWhen(
+                              orElse: () => const SizedBox.shrink(),
+                              loading: () {
+                                return const Center(child: CircularProgressIndicator());
+                              },
+                              noInternet: () {
+                                Future.delayed(const Duration(milliseconds: 500), () async {
+                                  Get.offNamed(AppRoutes.noInternet);
+                                });
+                                return const SizedBox.shrink();
+                              },
+                              success: (data, _, hasMoreItems) {
+                                return PageView.builder(
+                                  onPageChanged: (value) {
+                                    page = value;
+                                    if (page == data.length - 2) {
+                                      context.read<GetRandomQuotesCubit>().addMoreRandomQuotes();
+                                    }
+                                  },
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: data.length,
+                                  itemBuilder: (context, index) {
+                                    return QuoteViewer(
+                                      quote: data[index],
+                                      screenshotController: screenshotController,
+                                    );
+                                  },
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 20.0, left: 20),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: BottomWidget(),
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 20.0, left: 20),
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: BottomWidget(),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        );
-      }),
+          );
+        }),
+      ),
     );
   }
 }
@@ -216,6 +218,7 @@ class BottomWidget extends StatelessWidget {
                 },
                 icon: const Icon(
                   Icons.format_paint_outlined,
+                  color: AppColors.white,
                 ),
               ),
             ),
@@ -233,6 +236,7 @@ class BottomWidget extends StatelessWidget {
                 },
                 icon: const Icon(
                   Icons.favorite,
+                  color: AppColors.white,
                 ),
               ),
             ),
