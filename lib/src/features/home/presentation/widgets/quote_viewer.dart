@@ -9,6 +9,7 @@ import 'package:motivational/src/features/auth/screens/auth_bottom_sheet.dart';
 import 'package:motivational/src/features/home/bloc/favorite_saver/favorite_saver_cubit.dart';
 import 'package:motivational/src/features/home/bloc/painter_saver/painter_saver_cubit.dart';
 import 'package:motivational/src/features/home/bloc/share/share_cubit.dart';
+import 'package:motivational/src/features/home/bloc/toggle_favorite/toggle_favorite_cubit.dart';
 import 'package:motivational/src/features/home/domain/model/quotes_model.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:lottie/lottie.dart';
@@ -22,6 +23,7 @@ class QuoteViewer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final backgroundElement = context.watch<PainterSaverCubit>().state;
+
     return Stack(
       children: [
         Positioned.fill(
@@ -106,8 +108,7 @@ class QuoteViewer extends StatelessWidget {
                   builder: (context, state) {
                     return state.maybeWhen(
                       orElse: () => Positioned(
-                        bottom: (MediaQuery.of(context).viewInsets.bottom + MediaQuery.of(context).viewPadding.bottom) +
-                            (MediaQuery.of(context).size.height * 0.2),
+                        bottom: 100,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -127,17 +128,34 @@ class QuoteViewer extends StatelessWidget {
                                 Future.delayed(const Duration(milliseconds: 1500), () {
                                   _isVisible.value = false;
                                 });
-
                                 if (AuthRepository().authRepository.isSignedIn) {
                                   context.read<FavoriteSaverCubit>().addToList(quote);
                                   context.showSnackbar(title: "Success !", message: "Added to Favorites");
+                                  context.read<ToggleFavoriteCubit>().containsQuote(quote);
                                 } else {
                                   AuthBottomSheet.show(context);
                                 }
                               },
-                              icon: const Icon(
-                                Icons.favorite_outline,
-                                size: 30,
+                              icon: BlocBuilder<ToggleFavoriteCubit, ToggleFavoriteState>(
+                                builder: (context, state) {
+                                  context.read<ToggleFavoriteCubit>().containsQuote(quote);
+                                  return state.maybeWhen(
+                                      orElse: () => const Icon(
+                                            Icons.favorite_outline,
+                                            size: 30,
+                                          ),
+                                      toggle: (value) {
+                                        return value
+                                            ? const Icon(
+                                                Icons.favorite,
+                                                size: 30,
+                                              )
+                                            : const Icon(
+                                                Icons.favorite_outline,
+                                                size: 30,
+                                              );
+                                      });
+                                },
                               ),
                             ),
                           ],
@@ -147,7 +165,6 @@ class QuoteViewer extends StatelessWidget {
                     );
                   },
                 ),
-                const SizedBox(height: 150),
               ],
             ),
           );

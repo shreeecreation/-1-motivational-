@@ -3,6 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:motivational/src/core/theme/app_colors.dart';
+import 'package:motivational/src/core/theme/app_styles.dart';
+import 'package:motivational/src/core/widgets/context.extension.dart';
 import 'package:motivational/src/features/auth/screens/blocs/auth/auth_cubit.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
 
@@ -52,55 +56,62 @@ class _AuthBottomSheetState extends State<AuthBottomSheet> {
             );
           },
           builder: (context, state) {
-            return state.maybeWhen(
-              orElse: () {
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    18.verticalSpace,
-                    Text(
+            return state.maybeWhen(orElse: () {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  18.verticalSpace,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
                       'Sign in to Motivator and get access to all features',
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headlineMedium,
+                      style: AppStyles.text18Px,
                     ),
-                    18.verticalSpace,
+                  ),
+                  18.verticalSpace,
+                  SocialLoginButton(
+                    borderRadius: 8.0,
+                    backgroundColor: AppColors.textBlue,
+                    buttonType: SocialLoginButtonType.facebook,
+                    onPressed: () {
+                      context.read<AuthCubit>().loginWithFacebook();
+                    },
+                    text: 'Continue with Facebook',
+                    height: 52.0,
+                  ),
+                  18.verticalSpace,
+                  SocialLoginButton(
+                    borderRadius: 8,
+                    buttonType: SocialLoginButtonType.google,
+                    onPressed: () {
+                      context.read<AuthCubit>().loginWithGoogle();
+                    },
+                    text: 'Continue with Google',
+                    height: 52.0,
+                  ),
+                  18.verticalSpace,
+                  if (Platform.isIOS)
                     SocialLoginButton(
-                      buttonType: SocialLoginButtonType.facebook,
+                      buttonType: SocialLoginButtonType.appleBlack,
                       onPressed: () {
-                        context.read<AuthCubit>().loginWithFacebook();
+                        context.read<AuthCubit>().loginWithApple();
                       },
-                      text: 'Continue with Facebook',
-                      height: 52.0,
+                      height: 42.0,
+                      text: 'Contiue with Apple',
                     ),
-                    18.verticalSpace,
-                    SocialLoginButton(
-                      buttonType: SocialLoginButtonType.google,
-                      onPressed: () {
-                        context.read<AuthCubit>().loginWithGoogle();
-                      },
-                      text: 'Continue with Google',
-                      height: 52.0,
-                    ),
-                    18.verticalSpace,
-                    if (Platform.isIOS)
-                      SocialLoginButton(
-                        buttonType: SocialLoginButtonType.appleBlack,
-                        onPressed: () {
-                          context.read<AuthCubit>().loginWithApple();
-                        },
-                        height: 42.0,
-                        text: 'Contiue with Apple',
-                      ),
-                    18.verticalSpace,
-                  ],
-                );
-              },
-              loading: () {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              },
-            );
+                  18.verticalSpace,
+                ],
+              );
+            }, loading: () {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }, success: () {
+              context.showSnackbar(title: "Authentication", message: "Authentication Completed", error: false);
+              Navigator.pop(context);
+              return const SizedBox.shrink();
+            });
           },
         ),
       );

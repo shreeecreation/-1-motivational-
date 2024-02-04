@@ -5,11 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:motivational/src/core/repository/auth_repository.dart';
 import 'package:motivational/src/core/routes/routes.dart';
 import 'package:motivational/src/core/theme/app_colors.dart';
 import 'package:motivational/src/core/theme/app_styles.dart';
 import 'package:motivational/src/core/widgets/custom_button.dart';
 import 'package:motivational/src/core/widgets/scaffold_wrapper.dart';
+import 'package:motivational/src/features/auth/screens/auth_bottom_sheet.dart';
 import 'package:motivational/src/features/home/bloc/get_random/get_random_quotes_cubit.dart';
 import 'package:motivational/src/features/home/bloc/painter_saver/painter_saver_cubit.dart';
 import 'package:motivational/src/features/home/bloc/share/share_cubit.dart';
@@ -19,6 +21,7 @@ import 'package:motivational/src/features/home/domain/constant/painter_constant.
 import 'package:motivational/src/features/home/presentation/widgets/quote_viewer.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -232,7 +235,11 @@ class BottomWidget extends StatelessWidget {
               ),
               child: IconButton(
                 onPressed: () {
-                  Get.toNamed(AppRoutes.favoritePage);
+                  if (AuthRepository().authRepository.isSignedIn) {
+                    Get.toNamed(AppRoutes.favoritePage);
+                  } else {
+                    AuthBottomSheet.show(context);
+                  }
                 },
                 icon: const Icon(
                   Icons.favorite,

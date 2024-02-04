@@ -13,6 +13,7 @@ class FavoriteSaverCubit extends Cubit<FavoriteSaverState> {
   FavoriteSaverCubit() : super(const FavoriteSaverState.initial());
   static const String quotesKey = 'quotes';
 
+
   Future<void> addToList(QuotesModel quote) async {
     emit(const FavoriteSaverState.loading());
     SharedPreferences prefs = await SharedPreferences.getInstance();

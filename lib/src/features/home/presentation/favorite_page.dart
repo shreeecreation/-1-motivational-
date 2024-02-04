@@ -34,36 +34,25 @@ class FavoritePage extends StatelessWidget {
               builder: (context, state) {
                 return state.maybeWhen(
                   orElse: () {
-                    return AuthRepository().authRepository.isSignedIn
-                        ? SliverToBoxAdapter(
-                            child: SizedBox(
-                              height: context.height,
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                      child: AppCacheImageViewer(
-                                    imageUrl: Assets.images.favorite.path,
-                                    imageTypeEnum: ImageTypeEnum.assets,
-                                  )),
-                                  20.verticalSpace,
-                                  Text(
-                                    "No favorites found !",
-                                    style: AppStyles.text20Px.textGrey,
-                                  )
-                                ],
-                              ),
-                            ),
-                          )
-                        : SliverToBoxAdapter(
-                            child: SizedBox(
-                              height: context.height / 2,
-                              child: Center(
-                                  child: Text(
-                                "Please sign up to use this feature",
-                                style: AppStyles.text12Px,
-                              )),
-                            ),
-                          );
+                    return SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: context.height,
+                        child: Column(
+                          children: [
+                            SizedBox(
+                                child: AppCacheImageViewer(
+                              imageUrl: Assets.images.favorite.path,
+                              imageTypeEnum: ImageTypeEnum.assets,
+                            )),
+                            20.verticalSpace,
+                            Text(
+                              "No favorites found !",
+                              style: AppStyles.text20Px.textGrey,
+                            )
+                          ],
+                        ),
+                      ),
+                    );
                   },
                   getList: (quotesModel) {
                     if (quotesModel.isEmpty) {
