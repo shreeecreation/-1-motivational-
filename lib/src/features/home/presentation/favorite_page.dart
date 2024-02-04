@@ -8,6 +8,7 @@ import 'package:motivational/src/core/theme/app_colors.dart';
 import 'package:motivational/src/core/theme/app_styles.dart';
 import 'package:motivational/src/core/theme/typography.dart';
 import 'package:motivational/src/core/widgets/cache_image_viewer.dart';
+import 'package:motivational/src/core/widgets/context.extension.dart';
 import 'package:motivational/src/core/widgets/scaffold_wrapper.dart';
 import 'package:motivational/src/features/home/bloc/favorite_saver/favorite_saver_cubit.dart';
 import 'package:motivational/src/features/home/domain/enum/image_type_enum.dart';
@@ -81,11 +82,8 @@ class FavoritePage extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    color: AppColors.greyColor,
-                                  ),
+                              child: Card(
+                                  elevation: 0.8,
                                   child: Padding(
                                     padding: const EdgeInsets.all(16.0),
                                     child: Row(
@@ -99,7 +97,10 @@ class FavoritePage extends StatelessWidget {
                                           ),
                                         ),
                                         GestureDetector(
-                                          onTap: () => context.read<FavoriteSaverCubit>().removeFromList(quotesModel[index]),
+                                          onTap: () {
+                                            context.read<FavoriteSaverCubit>().removeFromList(quotesModel[index]);
+                                            context.showSnackbar(title: 'Success !', message: "Removed from favorites");
+                                          },
                                           child: const Icon(
                                             Icons.delete,
                                             color: AppColors.statusRed,

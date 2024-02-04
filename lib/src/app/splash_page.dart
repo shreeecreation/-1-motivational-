@@ -23,7 +23,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
     super.initState();
 
     _controller = AnimationController(
-      duration: const Duration(seconds: 1),
+      duration: const Duration(milliseconds: 800),
       vsync: this,
     );
 

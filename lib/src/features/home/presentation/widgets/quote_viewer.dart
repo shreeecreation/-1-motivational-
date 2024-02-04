@@ -96,8 +96,8 @@ class QuoteViewer extends StatelessWidget {
                               builder: (context, value, child) {
                                 return Visibility(
                                     visible: value,
-                                    child:
-                                        Center(child: SizedBox(height: 150, width: 150, child: Lottie.asset(Assets.lottie.favorite, repeat: false))));
+                                    child: Center(
+                                        child: SizedBox(height: 200, width: 200, child: Lottie.asset(Assets.lottie.favorites, repeat: false))));
                               },
                             )
                           : const SizedBox.shrink(),
@@ -122,41 +122,50 @@ class QuoteViewer extends StatelessWidget {
                               ),
                             ),
                             12.horizontalSpace,
-                            IconButton(
-                              onPressed: () {
-                                _isVisible.value = true;
-                                Future.delayed(const Duration(milliseconds: 1500), () {
-                                  _isVisible.value = false;
+                            BlocBuilder<ToggleFavoriteCubit, ToggleFavoriteState>(
+                              builder: (context, state) {
+                                context.read<ToggleFavoriteCubit>().containsQuote(quote);
+                                return state.maybeWhen(orElse: () {
+                                  return GestureDetector(
+                                    onTap: () => context.read<ToggleFavoriteCubit>().containsQuote(quote),
+                                    child: const Icon(
+                                      Icons.favorite_outline,
+                                      size: 30,
+                                    ),
+                                  );
+                                }, toggle: (value) {
+                                  context.read<ToggleFavoriteCubit>().containsQuote(quote);
+
+                                  return IconButton(
+                                      onPressed: () {
+                                        if (AuthRepository().authRepository.isSignedIn) {
+                                          if (value) {
+                                            context.read<FavoriteSaverCubit>().removeFromList(quote);
+                                            context.showSnackbar(title: "Success !", message: "Removed from Favorites");
+                                          } else {
+                                            context.read<FavoriteSaverCubit>().addToList(quote);
+                                            context.showSnackbar(title: "Success !", message: "Added to Favorites");
+                                            _isVisible.value = true;
+                                            Future.delayed(const Duration(milliseconds: 1500), () {
+                                              _isVisible.value = false;
+                                            });
+                                          }
+                                        } else {
+                                          AuthBottomSheet.show(context);
+                                        }
+                                        context.read<ToggleFavoriteCubit>().containsQuote(quote);
+                                      },
+                                      icon: value
+                                          ? const Icon(
+                                              Icons.favorite,
+                                              size: 30,
+                                            )
+                                          : const Icon(
+                                              Icons.favorite_outline,
+                                              size: 30,
+                                            ));
                                 });
-                                if (AuthRepository().authRepository.isSignedIn) {
-                                  context.read<FavoriteSaverCubit>().addToList(quote);
-                                  context.showSnackbar(title: "Success !", message: "Added to Favorites");
-                                  context.read<ToggleFavoriteCubit>().containsQuote(quote);
-                                } else {
-                                  AuthBottomSheet.show(context);
-                                }
                               },
-                              icon: BlocBuilder<ToggleFavoriteCubit, ToggleFavoriteState>(
-                                builder: (context, state) {
-                                  context.read<ToggleFavoriteCubit>().containsQuote(quote);
-                                  return state.maybeWhen(
-                                      orElse: () => const Icon(
-                                            Icons.favorite_outline,
-                                            size: 30,
-                                          ),
-                                      toggle: (value) {
-                                        return value
-                                            ? const Icon(
-                                                Icons.favorite,
-                                                size: 30,
-                                              )
-                                            : const Icon(
-                                                Icons.favorite_outline,
-                                                size: 30,
-                                              );
-                                      });
-                                },
-                              ),
                             ),
                           ],
                         ),

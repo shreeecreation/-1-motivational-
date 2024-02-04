@@ -108,7 +108,6 @@ class _AuthBottomSheetState extends State<AuthBottomSheet> {
                 child: CircularProgressIndicator(),
               );
             }, success: () {
-              context.showSnackbar(title: "Authentication", message: "Authentication Completed", error: false);
               Navigator.pop(context);
               return const SizedBox.shrink();
             });

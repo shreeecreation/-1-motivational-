@@ -22,6 +22,7 @@ class ToggleFavoriteCubit extends Cubit<ToggleFavoriteState> {
         final quotes = quotesJsonList.map((quoteJson) => QuotesModel.fromJson(jsonDecode(quoteJson))).toList();
         if (quotes.contains(model)) {
           if (state is _Success) {
+            print(state);
             final _state = state as _Success;
 
             emit(_state.copyWith(value: true));
@@ -31,7 +32,6 @@ class ToggleFavoriteCubit extends Cubit<ToggleFavoriteState> {
         } else {
           if (state is _Success) {
             final _state = state as _Success;
-
             emit(_state.copyWith(value: false));
           } else {
             emit(const ToggleFavoriteState.toggle(value: false));
@@ -39,6 +39,6 @@ class ToggleFavoriteCubit extends Cubit<ToggleFavoriteState> {
         }
       }
     } catch (e) {}
+    print(state);
   }
-  
 }

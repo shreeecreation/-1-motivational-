@@ -20,6 +20,7 @@ QuotesModel _$QuotesModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$QuotesModel {
+// required String id,
   String get content => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
@@ -129,6 +130,7 @@ class _$QuotesModelImpl extends _QuotesModel {
   factory _$QuotesModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuotesModelImplFromJson(json);
 
+// required String id,
   @override
   final String content;
   @override
@@ -186,7 +188,7 @@ abstract class _QuotesModel extends QuotesModel {
   factory _QuotesModel.fromJson(Map<String, dynamic> json) =
       _$QuotesModelImpl.fromJson;
 
-  @override
+  @override // required String id,
   String get content;
   @override
   String get author;

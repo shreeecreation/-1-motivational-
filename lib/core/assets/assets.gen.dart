@@ -50,14 +50,14 @@ class $AssetsImagesGen {
 class $AssetsLottieGen {
   const $AssetsLottieGen();
 
-  /// File path: assets/lottie/favorite.json
-  String get favorite => 'assets/lottie/favorite.json';
+  /// File path: assets/lottie/favorites.json
+  String get favorites => 'assets/lottie/favorites.json';
 
   /// File path: assets/lottie/nointernet.json
   String get nointernet => 'assets/lottie/nointernet.json';
 
   /// List of all assets
-  List<String> get values => [favorite, nointernet];
+  List<String> get values => [favorites, nointernet];
 }
 
 class $AssetsSvgGen {
