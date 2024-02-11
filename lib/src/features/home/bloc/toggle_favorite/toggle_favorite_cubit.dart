@@ -10,7 +10,7 @@ part 'toggle_favorite_state.dart';
 part 'toggle_favorite_cubit.freezed.dart';
 
 class ToggleFavoriteCubit extends Cubit<ToggleFavoriteState> {
-  ToggleFavoriteCubit() : super(const ToggleFavoriteState.initial());
+  ToggleFavoriteCubit() : super(const ToggleFavoriteState.toggle(value: false));
   static const String quotesKey = 'quotes';
 
   void containsQuote(QuotesModel model) async {

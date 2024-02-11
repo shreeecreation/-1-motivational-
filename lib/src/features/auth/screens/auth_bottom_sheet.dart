@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:motivational/core/assets/assets.gen.dart';
 import 'package:motivational/src/core/theme/app_colors.dart';
 import 'package:motivational/src/core/theme/app_styles.dart';
 import 'package:motivational/src/core/widgets/context.extension.dart';
@@ -51,7 +52,7 @@ class _AuthBottomSheetState extends State<AuthBottomSheet> {
                 );
               },
               success: () {
-                Navigator.of(context).pop();
+                // Navigator.of(context).pop();
               },
             );
           },
@@ -108,8 +109,22 @@ class _AuthBottomSheetState extends State<AuthBottomSheet> {
                 child: CircularProgressIndicator(),
               );
             }, success: () {
-              Navigator.pop(context);
-              return const SizedBox.shrink();
+              return Container(
+                height: 100,
+                child: Center(
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Assets.svg.logo.svg(),
+                    20.horizontalSpace,
+                    Text(
+                      "Logged In Successfully !",
+                      style: AppStyles.text18PxMedium,
+                    ),
+                  ],
+                )),
+              );
+              // Navigator.pop(context);
             });
           },
         ),

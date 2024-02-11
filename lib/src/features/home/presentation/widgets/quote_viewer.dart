@@ -127,7 +127,10 @@ class QuoteViewer extends StatelessWidget {
                                 context.read<ToggleFavoriteCubit>().containsQuote(quote);
                                 return state.maybeWhen(orElse: () {
                                   return GestureDetector(
-                                    onTap: () => context.read<ToggleFavoriteCubit>().containsQuote(quote),
+                                    onTap: () {
+                                      if (AuthRepository().authRepository.isSignedIn) {}
+                                      AuthBottomSheet.show(context);
+                                    },
                                     child: const Icon(
                                       Icons.favorite_outline,
                                       size: 30,
