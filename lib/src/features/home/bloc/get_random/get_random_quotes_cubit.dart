@@ -57,10 +57,10 @@ class GetRandomQuotesCubit extends Cubit<GetRandomQuotesState> {
           query: {
             // "tags": {"\$in": ["motivational", "inspirational", "success"]},
             // 'is_published': true,
+            'sort': "@random"
           },
         );
         List<QuotesModel> quotes = (response.items).map((quoteData) => QuotesModel.fromJson(quoteData.data)).toList();
-
         if (state is _Success) {
           final _state = state as _Success;
           emit(_state.copyWith(posts: [..._quotes, ...quotes]));

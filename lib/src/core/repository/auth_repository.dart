@@ -17,6 +17,7 @@ final class AuthRepository {
   Future<RecordAuth> signInWithGoogle() async {
     try {
       final response = await pb.client.collection('users').authWithOAuth2('google', (url) {
+        print(url);
         Get.to(() => AppWebViewer(url: url));
       }, scopes: [
         'profile',
