@@ -85,6 +85,7 @@ class _AuthBottomSheetState extends State<AuthBottomSheet> {
                     buttonType: SocialLoginButtonType.google,
                     onPressed: () {
                       context.read<AuthCubit>().loginWithGoogle();
+                      Navigator.pop(context);
                     },
                     text: 'Continue with Google',
                     height: 52.0,

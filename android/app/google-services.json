@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "398149048158",
-    "project_id": "motivator-53ae0",
-    "storage_bucket": "motivator-53ae0.appspot.com"
+    "project_number": "179648129338",
+    "project_id": "motivator-b1e0c",
+    "storage_bucket": "motivator-b1e0c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:398149048158:android:46e198945dd518214ae1cf",
+        "mobilesdk_app_id": "1:179648129338:android:e15ef491871d3dd66cc803",
         "android_client_info": {
-          "package_name": "com.example.motivational"
+          "package_name": "com.veryfast.motivator"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyChD_87JVOgazvnhvp7u-4bjT3mDkohk6Q"
+          "current_key": "AIzaSyBvIDfvbAchcKnuCAitg_wTXCEuPNOHBgo"
         }
       ],
       "services": {

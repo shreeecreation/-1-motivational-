@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:bloc/bloc.dart';
 
 import '../../domain/model/quotes_model.dart';
 

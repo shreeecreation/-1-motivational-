@@ -36,7 +36,7 @@ class GetRandomQuotesCubit extends Cubit<GetRandomQuotesState> {
         List<QuotesModel> quotes = response.items.map((quoteData) => QuotesModel.fromJson(quoteData.data)).toList();
         _quotes = quotes;
         emit(GetRandomQuotesState.success(posts: quotes));
-      } catch (e) {
+      } catch (e) { 
         emit(const GetRandomQuotesState.error());
       }
     } else {

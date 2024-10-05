@@ -5,9 +5,9 @@ import '../theme/app_colors.dart';
 
 class AppWebViewer extends StatefulWidget {
   const AppWebViewer({
-    super.key,
+    Key? key,
     required this.url,
-  });
+  }) : super(key: key);
 
   final Uri url;
 
@@ -25,7 +25,7 @@ class _AppWebViewerState extends State<AppWebViewer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.surface,
+          backgroundColor: Theme.of(context).colorScheme.background,
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -79,7 +79,7 @@ class _AppWebViewerState extends State<AppWebViewer> {
             useHybridComposition: true,
           ),
         ),
-        initialUrlRequest: URLRequest(url: WebUri(widget.url.path)),
+        initialUrlRequest: URLRequest(url: widget.url),
         onProgressChanged: (controller, progress) {
           if (progress == 100) {
             _isLoading.value = false;

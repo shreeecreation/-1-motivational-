@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyAV1a1Lg0g8PrNazQCs_qUBRd51LGXdQaU</string>
+	<string>AIzaSyBSASx2h8VAMo-Dm2HkCZtSuXh7xIFs8Js</string>
 	<key>GCM_SENDER_ID</key>
-	<string>398149048158</string>
+	<string>179648129338</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.motivational</string>
+	<string>com.veryfast.motivator</string>
 	<key>PROJECT_ID</key>
-	<string>motivator-53ae0</string>
+	<string>motivator-b1e0c</string>
 	<key>STORAGE_BUCKET</key>
-	<string>motivator-53ae0.appspot.com</string>
+	<string>motivator-b1e0c.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:398149048158:ios:e80cf3171231df1d4ae1cf</string>
+	<string>1:179648129338:ios:e7595d8c581e9c656cc803</string>
 </dict>
 </plist>

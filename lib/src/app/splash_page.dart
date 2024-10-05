@@ -5,6 +5,7 @@ import 'package:get/route_manager.dart';
 import 'package:motivational/core/assets/assets.gen.dart';
 import 'package:motivational/src/core/routes/routes.dart';
 import 'package:motivational/src/core/widgets/scaffold_wrapper.dart';
+import 'package:motivational/src/features/notifications/notifications_service.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -22,6 +23,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
   void initState() {
     super.initState();
 
+    getFCMToken();
     _controller = AnimationController(
       duration: const Duration(milliseconds: 800),
       vsync: this,
