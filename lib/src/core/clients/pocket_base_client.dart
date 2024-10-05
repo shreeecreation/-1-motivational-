@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:logging/logging.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:shared_preferences/shared_preferences.dart';

@@ -41,7 +41,7 @@ class AppTheme {
       labelStyle: AppStyles.text14PxBold.textDark,
       labelColor: AppColors.textDark,
       unselectedLabelColor: AppColors.textLight,
-      overlayColor: MaterialStateProperty.all(AppColors.transparent),
+      overlayColor: WidgetStateProperty.all(AppColors.transparent),
       unselectedLabelStyle: AppStyles.text14PxBold.textLight,
     ),
     splashColor: AppColors.white,

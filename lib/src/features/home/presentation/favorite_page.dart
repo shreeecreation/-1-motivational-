@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:motivational/core/assets/assets.gen.dart';
-import 'package:motivational/src/core/repository/auth_repository.dart';
 import 'package:motivational/src/core/theme/app_colors.dart';
 import 'package:motivational/src/core/theme/app_styles.dart';
 import 'package:motivational/src/core/theme/typography.dart';
@@ -92,7 +91,7 @@ class FavoritePage extends StatelessWidget {
                                         SizedBox(
                                           width: context.width / 1.4,
                                           child: Text(
-                                            quotesModel[index].content + " - " + quotesModel[index].author,
+                                            "${quotesModel[index].content} - ${quotesModel[index].author}",
                                             style: AppStyles.text13PxMedium,
                                           ),
                                         ),

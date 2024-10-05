@@ -7,10 +7,10 @@ import 'package:motivational/src/features/home/domain/enum/image_type_enum.dart'
 class AppCacheImageViewer extends CachedNetworkImage {
   AppCacheImageViewer({
     super.key,
-    required String imageUrl,
-    BoxFit fit = BoxFit.cover,
+    required super.imageUrl,
+    BoxFit super.fit = BoxFit.cover,
     required this.imageTypeEnum,
-  }) : super(imageUrl: imageUrl, fit: fit);
+  });
   final ImageTypeEnum imageTypeEnum;
 
   @override

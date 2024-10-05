@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class ScaffoldWrapper extends StatelessWidget {
   const ScaffoldWrapper({
-    Key? key,
+    super.key,
     this.appBar,
     this.body,
     this.floatingActionButton,
@@ -27,7 +27,7 @@ class ScaffoldWrapper extends StatelessWidget {
     this.drawerEnableOpenDragGesture = true,
     this.endDrawerEnableOpenDragGesture = true,
     this.restorationId,
-  }) : super(key: key);
+  });
 
   final bool extendBody;
 

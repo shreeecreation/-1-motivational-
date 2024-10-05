@@ -42,24 +42,22 @@ class PainterSaverCubit extends Cubit<PainterSaverState> {
     await prefs.setInt('selectedColor', color.value);
     logger.info('Color saved: ${color.toString()}');
 
-    emit(PainterSaverState.mode(color: color, image: _state.image));
+    emit(PainterSaverState.mode(color: color, image: state.image));
   }
 
   Future<void> selectImage(String image) async {
     final _state = state as _Mode;
-    final _localImage = await AppCacheManager.manager.getSingleFile(image);
+    final localImage = await AppCacheManager.manager.getSingleFile(image);
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('selectedImage', _localImage.path);
-    emit(PainterSaverState.mode(image: _localImage.path, color: _state.color));
+    prefs.setString('selectedImage', localImage.path);
+    emit(PainterSaverState.mode(image: localImage.path, color: state.color));
   }
 
   Future<void> setLocalImage(String image) async {
     final _state = state as _Mode;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    
-    prefs.setString('selectedImage', image);
-    emit(PainterSaverState.mode(image: image, color: _state.color));
-  }
 
-  
+    prefs.setString('selectedImage', image);
+    emit(PainterSaverState.mode(image: image, color: state.color));
+  }
 }

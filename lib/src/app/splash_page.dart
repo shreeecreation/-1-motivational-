@@ -7,7 +7,7 @@ import 'package:motivational/src/core/routes/routes.dart';
 import 'package:motivational/src/core/widgets/scaffold_wrapper.dart';
 
 class SplashPage extends StatefulWidget {
-  const SplashPage({Key? key}) : super(key: key);
+  const SplashPage({super.key});
 
   @override
   _SplashPageState createState() => _SplashPageState();

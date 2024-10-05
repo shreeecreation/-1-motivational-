@@ -15,7 +15,7 @@ import 'package:screenshot/screenshot.dart';
 import 'package:lottie/lottie.dart';
 
 class QuoteViewer extends StatelessWidget {
-  QuoteViewer({Key? key, required this.quote, required this.screenshotController}) : super(key: key);
+  QuoteViewer({super.key, required this.quote, required this.screenshotController});
   final QuotesModel quote;
   final ScreenshotController screenshotController;
   final ValueNotifier<bool> _isVisible = ValueNotifier<bool>(false);

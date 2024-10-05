@@ -3,16 +3,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:motivational/core/assets/assets.gen.dart';
 import 'package:motivational/src/core/theme/app_colors.dart';
 import 'package:motivational/src/core/theme/app_styles.dart';
-import 'package:motivational/src/core/widgets/context.extension.dart';
 import 'package:motivational/src/features/auth/screens/blocs/auth/auth_cubit.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
 
 class AuthBottomSheet extends StatefulWidget {
-  const AuthBottomSheet({Key? key}) : super(key: key);
+  const AuthBottomSheet({super.key});
 
   @override
   State<AuthBottomSheet> createState() => _AuthBottomSheetState();
@@ -109,7 +107,7 @@ class _AuthBottomSheetState extends State<AuthBottomSheet> {
                 child: CircularProgressIndicator(),
               );
             }, success: () {
-              return Container(
+              return SizedBox(
                 height: 100,
                 child: Center(
                     child: Row(
