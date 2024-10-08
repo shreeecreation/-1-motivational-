@@ -12,7 +12,7 @@ part of 'save_sound_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$SaveSoundState {
@@ -72,6 +72,9 @@ class _$SaveSoundStateCopyWithImpl<$Res, $Val extends SaveSoundState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SaveSoundState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -88,6 +91,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SaveSoundState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -193,6 +199,8 @@ class __$$SaveSoundImplCopyWithImpl<$Res>
       _$SaveSoundImpl _value, $Res Function(_$SaveSoundImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SaveSoundState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -232,7 +240,9 @@ class _$SaveSoundImpl implements _SaveSound {
   @override
   int get hashCode => Object.hash(runtimeType, soundPathIndex);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SaveSoundState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SaveSoundImplCopyWith<_$SaveSoundImpl> get copyWith =>
@@ -306,7 +316,10 @@ abstract class _SaveSound implements SaveSoundState {
       _$SaveSoundImpl;
 
   int get soundPathIndex;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SaveSoundState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SaveSoundImplCopyWith<_$SaveSoundImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

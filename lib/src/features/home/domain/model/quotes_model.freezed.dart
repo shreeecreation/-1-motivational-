@@ -12,7 +12,7 @@ part of 'quotes_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 QuotesModel _$QuotesModelFromJson(Map<String, dynamic> json) {
   return _QuotesModel.fromJson(json);
@@ -25,8 +25,12 @@ mixin _$QuotesModel {
   String get author => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
 
+  /// Serializes this QuotesModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of QuotesModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $QuotesModelCopyWith<QuotesModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$QuotesModelCopyWithImpl<$Res, $Val extends QuotesModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of QuotesModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +99,8 @@ class __$$QuotesModelImplCopyWithImpl<$Res>
       _$QuotesModelImpl _value, $Res Function(_$QuotesModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of QuotesModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -159,12 +167,14 @@ class _$QuotesModelImpl extends _QuotesModel {
             const DeepCollectionEquality().equals(other._tags, _tags));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, content, author, const DeepCollectionEquality().hash(_tags));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of QuotesModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$QuotesModelImplCopyWith<_$QuotesModelImpl> get copyWith =>
@@ -188,14 +198,18 @@ abstract class _QuotesModel extends QuotesModel {
   factory _QuotesModel.fromJson(Map<String, dynamic> json) =
       _$QuotesModelImpl.fromJson;
 
-  @override // required String id,
+// required String id,
+  @override
   String get content;
   @override
   String get author;
   @override
   List<String> get tags;
+
+  /// Create a copy of QuotesModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$QuotesModelImplCopyWith<_$QuotesModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

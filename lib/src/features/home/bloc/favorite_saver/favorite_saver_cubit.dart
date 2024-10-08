@@ -50,7 +50,8 @@ class FavoriteSaverCubit extends Cubit<FavoriteSaverState> {
       }
 
       await prefs.setStringList(quotesKey, existingQuotesJsonList);
-      if (state is _GetList) {
+      if (
+        state is _GetList) {
         final _state = state as _GetList;
         final response = existingQuotesJsonList.map((quoteJson) => QuotesModel.fromJson(jsonDecode(quoteJson))).toList();
         emit(_state.copyWith(quotesModel: response));

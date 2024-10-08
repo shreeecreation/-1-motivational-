@@ -12,7 +12,7 @@ part of 'painter_saver_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PainterSaverState {
@@ -51,7 +51,9 @@ mixin _$PainterSaverState {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PainterSaverState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PainterSaverStateCopyWith<PainterSaverState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -75,6 +77,8 @@ class _$PainterSaverStateCopyWithImpl<$Res, $Val extends PainterSaverState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PainterSaverState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -112,6 +116,8 @@ class __$$ModeImplCopyWithImpl<$Res>
   __$$ModeImplCopyWithImpl(_$ModeImpl _value, $Res Function(_$ModeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PainterSaverState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -158,7 +164,9 @@ class _$ModeImpl extends _Mode {
   @override
   int get hashCode => Object.hash(runtimeType, color, image);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PainterSaverState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ModeImplCopyWith<_$ModeImpl> get copyWith =>
@@ -229,8 +237,11 @@ abstract class _Mode extends PainterSaverState {
   Color? get color;
   @override
   String? get image;
+
+  /// Create a copy of PainterSaverState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ModeImplCopyWith<_$ModeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
