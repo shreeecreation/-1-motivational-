@@ -67,108 +67,129 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
     return BlocProvider(
       create: (context) => ShareCubit(),
-      child: Builder(builder: (context) {
-        return MultiBlocListener(
-          listeners: [
-            BlocListener<ShareCubit, ShareState>(
-              listener: (context, state) {
-                state.maybeWhen(
-                  orElse: () => null,
-                  success: (image) {
-                    Share.shareXFiles(
-                      [XFile(image)],
-                      subject: 'Made with Motivator App',
-                    );
-                  },
-                );
-              },
-            ),
-            BlocListener<SaveSoundCubit, SaveSoundState>(
-              listener: (context, state) {
-                state.maybeWhen(
-                    orElse: () => null,
-                    saveSound: (soundPathIndex) {
-                      _audioPlayer.setAsset(PainterConstatnt.musicConstant.entries.elementAt(soundPathIndex).value);
-                    });
-              },
-            ),
-            BlocListener<ToggleSoundCubit, ToggleSoundState>(
-              // bloc: context.read<ToggleSoundCubit>()..toggleSound(),
-              listener: (context, state) {
-                state.maybeWhen(
-                    orElse: () {},
-                    toggle: (value) {
-                      isMuted = !value;
-                      value ? _audioPlayer.play() : _audioPlayer.pause();
-                    });
-              },
-            ),
-          ],
-          // child:
-          child: ScaffoldWrapper(
-            body: Stack(
-              children: [
-                Screenshot(
-                  controller: screenshotController,
-                  child: Stack(
-                    children: [
-                      Positioned.fill(
-                        child: backgroundElement.image == null || backgroundElement.image == ''
-                            ? const SizedBox.shrink()
-                            : Image.file(
-                                File(backgroundElement.image!),
-                                fit: BoxFit.cover,
-                              ),
-                      ),
-                      BlocBuilder<GetRandomQuotesCubit, GetRandomQuotesState>(
-                        builder: (context, state) {
-                          return state.maybeWhen(
-                            orElse: () => const SizedBox.shrink(),
-                            loading: () {
-                              return const Center(child: CircularProgressIndicator());
-                            },
-                            noInternet: () {
-                              Future.delayed(const Duration(milliseconds: 500), () async {
-                                Get.offNamed(AppRoutes.noInternet);
-                              });
-                              return const SizedBox.shrink();
-                            },
-                            success: (data, _, hasMoreItems) {
-                              return PageView.builder(
-                                onPageChanged: (value) {
-                                  page = value;
-                                  if (page == data.length - 2) {
-                                    context.read<GetRandomQuotesCubit>().addMoreRandomQuotes();
-                                  }
-                                },
-                                scrollDirection: Axis.vertical,
-                                itemCount: data.length,
-                                itemBuilder: (context, index) {
-                                  return QuoteViewer(
-                                    quote: data[index],
-                                    screenshotController: screenshotController,
-                                  );
-                                },
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 20.0, left: 20),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: BottomWidget(),
-                  ),
-                ),
-              ],
-            ),
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<ShareCubit, ShareState>(
+            listener: (context, state) {
+              state.maybeWhen(
+                orElse: () => null,
+                success: (image) {
+                  Share.shareXFiles(
+                    [XFile(image)],
+                    subject: 'Made with Motivator App',
+                  );
+                },
+              );
+            },
           ),
-        );
-      }),
+          BlocListener<SaveSoundCubit, SaveSoundState>(
+            listener: (context, state) {
+              state.maybeWhen(
+                  orElse: () => null,
+                  saveSound: (soundPathIndex) {
+                    _audioPlayer.setAsset(PainterConstatnt.musicConstant.entries.elementAt(soundPathIndex).value);
+                  });
+            },
+          ),
+          BlocListener<ToggleSoundCubit, ToggleSoundState>(
+            // bloc: context.read<ToggleSoundCubit>()..toggleSound(),
+            listener: (context, state) {
+              state.maybeWhen(
+                  orElse: () {},
+                  toggle: (value) {
+                    isMuted = !value;
+                    value ? _audioPlayer.play() : _audioPlayer.pause();
+                  });
+            },
+          ),
+        ],
+        child: ScaffoldWrapper(
+          body: Stack(
+            children: [
+              Screenshot(
+                controller: screenshotController,
+                child: Stack(
+                  children: [
+                    Positioned.fill(
+                      child: backgroundElement.image == null || backgroundElement.image == ''
+                          ? const SizedBox.shrink()
+                          : Image.file(
+                              File(backgroundElement.image!),
+                              fit: BoxFit.cover,
+                            ),
+                    ),
+                    BlocBuilder<GetRandomQuotesCubit, GetRandomQuotesState>(
+                      builder: (context, state) {
+                        return state.maybeWhen(
+                          orElse: () => const SizedBox.shrink(),
+                          loading: () {
+                            return const Center(child: CircularProgressIndicator());
+                          },
+                          noInternet: () {
+                            Future.delayed(const Duration(milliseconds: 500), () async {
+                              Get.offNamed(AppRoutes.noInternet);
+                            });
+                            return const SizedBox.shrink();
+                          },
+                          success: (data, _, hasMoreItems) {
+                            return PageView.builder(
+                              onPageChanged: (value) {
+                                page = value;
+                                if (page == data.length - 2) {
+                                  context.read<GetRandomQuotesCubit>().addMoreRandomQuotes();
+                                }
+                              },
+                              scrollDirection: Axis.vertical,
+                              itemCount: data.length,
+                              itemBuilder: (context, index) {
+                                return QuoteViewer(
+                                  quote: data[index],
+                                  screenshotController: screenshotController,
+                                );
+                              },
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 20.0, left: 20),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: BottomWidget(),
+                ),
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.all(35.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.toNamed(AppRoutes.quotesoftheDay);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(12.0),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.greyColor.withOpacity(.1),
+                        boxShadow: [],
+                      ),
+                      child: Icon(
+                        Icons.format_quote_sharp,
+                        size: 20.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
