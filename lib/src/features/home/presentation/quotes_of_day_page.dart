@@ -6,8 +6,8 @@ import 'package:motivational/src/features/home/bloc/quotes_of_the_day/quote_of_t
 
 class QuotesOfDayPage extends StatelessWidget {
   const QuotesOfDayPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class QuotesOfDayPage extends StatelessWidget {
       create: (context) => QuoteOfTheCubit()..getQuoteOfTheDay(),
       child: ScaffoldWrapper(
         appBar: AppBar(
-          title: const Text('Quotes of the Day'),
+          title: const Text('Quote of the Day'),
           centerTitle: true,
         ),
         body: BlocBuilder<QuoteOfTheCubit, QuoteOfTheDayState>(
