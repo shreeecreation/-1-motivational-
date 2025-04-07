@@ -1,0 +1,2 @@
+/Users/shreekrishnashrestha/Documents/Personal Projects/-1-motivational-/android/app/.cxx/Debug/14w4q5f5/x86/CMakeFiles/rebuild_cache.dir
+/Users/shreekrishnashrestha/Documents/Personal Projects/-1-motivational-/android/app/.cxx/Debug/14w4q5f5/x86/CMakeFiles/edit_cache.dir

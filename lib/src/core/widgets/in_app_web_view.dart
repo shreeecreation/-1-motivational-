@@ -46,7 +46,10 @@ class _AppWebViewerState extends State<AppWebViewer> {
               ),
               Text(
                 widget.url.origin,
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: 10),
+                style: Theme.of(context)
+                    .textTheme
+                    .titleSmall
+                    ?.copyWith(fontSize: 10),
               ),
             ],
           ),
@@ -79,7 +82,7 @@ class _AppWebViewerState extends State<AppWebViewer> {
             useHybridComposition: true,
           ),
         ),
-        initialUrlRequest: URLRequest(url: widget.url),
+        initialUrlRequest: URLRequest(url: WebUri.uri(widget.url)),
         onProgressChanged: (controller, progress) {
           if (progress == 100) {
             _isLoading.value = false;
@@ -115,7 +118,10 @@ class _AppWebViewerState extends State<AppWebViewer> {
           final doc = await controller.getHtml();
           // find title
           if (doc != null) {
-            final title = doc.split('<title>')[1].split('</title>')[0].replaceAll('\n', '');
+            final title = doc
+                .split('<title>')[1]
+                .split('</title>')[0]
+                .replaceAll('\n', '');
             _webTitle.value = title;
           }
         },
